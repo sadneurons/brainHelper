@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tester</title>
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+
+<script>
+
+    function selected(myid, selectorid) {
+        document.getElementById(myid).style.boxShadow = 'none';
+        document.getElementById(myid).style.color = 'grey';
+        var e = document.getElementById(selectorid);
+        var value = e.options[e.selectedIndex].value;
+        var text = e.options[e.selectedIndex].text;
+        document.getElementById(resultid).innerHTML = '<h1>' + value + '<h1>';
+        function printEls(){
+            var els = document.querySelectorAll('select[id^="iadlscard"]').value;
+            els.forEach(x => (x.innerText));
+        }
+        printEls()
+    }
+</script>
+
+<style>
+    h1{
+        text-align: center;
+    }
+
+    label{
+        text-align: center;
+    }
+    .card {
+        /* Add shadows to create the "card" effect */
+        width: 200px;
+        height: 300px;
+        margin:5%;
+        box-shadow: 0 4px 16px 0 rgba(0,0,0,0.2);
+        transition: 0.2s;
+        text-align: center;
+        border-color: black;
+        border-width: thick;
+    }
+
+    /* On mouse-over, add a deeper shadow */
+    .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.6);
+        border-color: red;
+        border-width: thick;
+    }
+    .flex_container{
+        width : 90%;
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        justify-content: center;
+
+    }
+    .canvasdiv{
+        margin: auto;
+    }
+    #myChart {
+        width:100%;
+        max-width:600px;
+    }
+</style>
+
+
+<body>
+
+
+<h1>This is our test headline</h1>
+<form class="flex_container" id="carform">
+<div class="card" id="card1">
+    <h2>Title</h2>
+    <h3>Job</h3>
+    <h4>Contact</h4>
+    <label for="firstcar">Choose a car:</label>
+    <select name="cars" id="firstcar" form="carform" onchange="selected(myid='card1',
+    selectorid='firstcar', resultid = 'resultcard1')">
+        <option value="0">Volvo</option>
+        <option value="1">Saab</option>
+        <option value="2">Opel</option>
+        <option value="3">Audi</option>
+    </select>
+    <h1 id = 'resultcard1'></h1>
+</div>
+
+<div class="card" id="card2">
+    <h2>Title</h2>
+    <h3>Job</h3>
+    <h4>Contact</h4>
+    <label for="wd">Choose a wd:</label>
+    <select name="wd" id="wd" form="carform" onchange="selected(myid='card2', selectorid='wd' , resultid = 'resultcard2')">
+        <option value="0">Volvo</option>
+        <option value="1">Saab</option>
+        <option value="2">Opel</option>
+        <option value="3">Audi</option>
+    </select>
+    <h1 id = 'resultcard2' ></h1>
+</div>
+
+    <div class="card" id="card3">
+        <h2>Title</h2>
+        <h3>Job</h3>
+        <h4>Contact</h4>
+    </div>
+
+    <div class="card" id="card4">
+        <h2>Title</h2>
+        <h3>Job</h3>
+        <h4>Contact</h4>
+    </div>
+
+    <div class="card" id="card5">
+        <h2>Title</h2>
+        <h3>Job</h3>
+        <h4>Contact</h4>
+    </div>
+
+</form>
+<div class="canvasdiv">
+<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+</div>
+<script>
+    function redrawGraph(xValues, yValues, barColors) {
+
+        new Chart("myChart", {
+            type: "bar",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues
+                }]
+            },
+            options: {
+                legend: {display: false},
+                title: {
+                    display: true,
+                    text: "IADL Scale scores"
+                },
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            autoSkip: false,
+                            maxRotation: 90,
+                            minRotation: 90
+                        }
+                    }]
+                },
+                xAxes: [{
+                    barThickness: 66,
+                    maxBarThickness: 80,
+                }]
+            }
+        });
+    }
+
+    redrawGraph(xValues = ["Italy", "France", "Spain", "USA", "Argentina"],
+        yValues = [55, 49, 44, 24, 15],
+        barColors = ["red", "green", "blue", "orange", "brown"])
+</script>
+
+
+</body>
+
+
+
+
+</html>
