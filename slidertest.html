@@ -3,9 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>slidertest</title>
+    <script>
+        function sumEQ5D() {
+            let eq5dslider = 0;
+            eq5dslider = document.getElementById("eq5dslider").value;
+            console.log(eq5dslider);
+        }
+    </script>
 </head>
 <body>
-<div id="eq5dslider"> <input type="range" orient="vertical" value="0" min="0" max="100"
-                             onChange="sumEQ5D()"/>
+<div id="eq5dslider"><input type="range" orient="vertical" value="0" min="0" max="100"
+                            onChange="sumEQ5D()"/></div>
 </body>
 </html>
