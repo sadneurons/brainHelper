@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <!-- Required meta tags -->
+    <style>        @import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+    </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -96,8 +98,8 @@
 
         window.onload = function () {
 
-            var secondsA = 00;
-            var tensA = 00;
+            var secondsA = '00';
+            var tensA = '00';
             var appendTensA = document.getElementById("tensA")
             var appendSecondsA = document.getElementById("secondsA")
             var buttonStartA = document.getElementById('button-startA');
@@ -105,8 +107,8 @@
             var buttonResetA = document.getElementById('button-resetA');
             var IntervalA;
 
-            var secondsB = 00;
-            var tensB = 00;
+            var secondsB = '00';
+            var tensB = '00';
             var appendTensB = document.getElementById("tensB")
             var appendSecondsB = document.getElementById("secondsB")
             var buttonStartB = document.getElementById('button-startB');
@@ -209,68 +211,118 @@
 
 
         }
-        window.addEventListener('load', function() {
-            document.querySelector('input[type="file"]').addEventListener('change', function() {
-                if (this.files && this.files[0]) {
-                    var img = document.querySelector('myImg');
-                    img.onload = () => {
-                        URL.revokeObjectURL(img.src);  // no longer needed, free memory
-                    }
-
-                    img.src = URL.createObjectURL(this.files[0]); // set src to blob url
-                }
-            });
-        });
+        // window.addEventListener('load', function () {
+        //     document.querySelector('input[type="file"]').addEventListener('change', function () {
+        //         if (this.files && this.files[0]) {
+        //             var img = document.querySelector('myImg');
+        //             img.onload = () => {
+        //                 URL.revokeObjectURL(img.src);  // no longer needed, free memory
+        //             }
+        //
+        //             img.src = URL.createObjectURL(this.files[0]); // set src to blob url
+        //         }
+        //     });
+        // });
         const mdsArray = new Object();
-        function mdsCalc(question){
-            let selectedVal  = document.getElementsByName(item).value;
+
+        function mdsCalc(question) {
+            let selectedVal = document.getElementsByName(question).value;
             mdsArray[question] = selectedVal;
             document.getElementById('mdsOutput').innerHTML = mdsArray;
+        }
+
+        function pffsCalc() {
+            let pffs_nodes = document.querySelectorAll('input[name^="PFFS"]:checked');
+            let pffs_array = [];
+            for (i = 0; i < pffs_nodes.length; i++) {
+                pffs_array.push(parseInt(pffs_nodes[i].value));
+            }
+            let pffs_total = pffs_array.reduce(add, 0);
+            document.getElementById('pffsOutputDiv').innerHTML = '<h4> Total PFFS score: ' + pffs_total + ' - giving a frailty index of: ' + Math.round(100 * pffs_total / 43, 2) / 100 + ' </h4>'
+        }
+
+        function Export2Word(element, filename = ''){
+            var preHtml = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML To Doc</title></head><body>";
+            var postHtml = "</body></html>";
+            var html = preHtml+document.getElementById(element).innerHTML+postHtml;
+
+            var blob = new Blob(['\ufeff', html], {
+                type: 'application/msword'
+            });
+
+            // Specify link url
+            var url = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(html);
+
+            // Specify file name
+            filename = filename?filename+'.doc':'document.doc';
+
+            // Create download link element
+            var downloadLink = document.createElement("a");
+
+            document.body.appendChild(downloadLink);
+
+            if(navigator.msSaveOrOpenBlob ){
+                navigator.msSaveOrOpenBlob(blob, filename);
+            }else{
+                // Create a link to the file
+                downloadLink.href = url;
+
+                // Setting the file name
+                downloadLink.download = filename;
+
+                //triggering the function
+                downloadLink.click();
+            }
+
+            document.body.removeChild(downloadLink);
+        }
+        function exportHTML(){
+            var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' "+
+                "xmlns:w='urn:schemas-microsoft-com:office:word' "+
+                "xmlns='http://www.w3.org/TR/REC-html40'>"+
+                "<head><meta charset='utf-8'><title>Export HTML to Word Document with JavaScript</title></head><body>";
+            var footer = "</body></html>";
+            var sourceHTML = header+document.getElementById("source-html").innerHTML+footer;
+
+            var source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
+            var fileDownload = document.createElement("a");
+            document.body.appendChild(fileDownload);
+            fileDownload.href = source;
+            fileDownload.download = 'document.doc';
+            fileDownload.click();
+            document.body.removeChild(fileDownload);
+        }
+        function isValidNhsNumber(txtNhsNumber) {
+
+            var isValid = false;
+
+            if (txtNhsNumber.length == 10) {
+
+                var total = 0;
+
+                var i = 0;
+                for (i = 0; i <= 8; i++) {
+                    var digit = txtNhsNumber.substr(i, 1);
+                    var factor = 10 - i;
+                    total += (digit * factor);
+                }
+
+                var checkDigit = (11 - (total % 11));
+
+                if (checkDigit == 11) { checkDigit = 0; }
+
+                if (checkDigit == txtNhsNumber.substr(9, 1)) { isValid = true; }
+            }
+
+            return isValid;
         }
 
     </script>
     <link rel="shortcut icon" type="image/x-icon" href="/faviconLarge.ico">
 
     <style>
-         /* Mixin's */
-        @mixin transition {
-            -webkit-transition: all 0.5s ease-in-out;
-            -moz-transition: all 0.5s ease-in-out;
-            transition: all 0.5s ease-in-out;
-        }
-        @mixin corners ($radius) {
-            -moz-border-radius: $ radius;
-            -webkit-border-radius: $ radius;
-            border-radius: $ radius;
-            -khtml-border-radius: $ radius;
-        }
-
-
         #seconds, #tens {
             font-size: 2em;
-        }
-
-        #watch > button {
-            @include corners (5px);
-            background: $ base-color;
-            color: $ white;
-            border: solid 1px $ white;
-            text-decoration: none;
-            cursor: pointer;
-            font-size: 1.2em;
-            padding: 18px 10px;
-            width: 180px;
-            margin: 10px;
-            outline: none;
-
-        &
-        :hover {
-            @include transition;
-            background: $ white;
-            border: solid 1px $ white;
-            color: $ base-color;
-        }
-
         }
 
         form {
@@ -287,7 +339,7 @@
 
         /* Style the buttons inside the tab */
         .tab button {
-            background -color: inherit;
+            background-color: inherit;
             float: left;
             border: thin;
             outline: none;
@@ -299,12 +351,12 @@
 
         /* Change background color of buttons on hover */
         .tab button:hover {
-            background -color: #ddd;
+            background-color: #ddd;
         }
 
         /* Create an active/current tablink class */
         .tab button.active {
-            background -color: #ccc;
+            background-color: #ccc;
         }
 
         /* Style the tab content */
@@ -330,7 +382,7 @@
 
         /* CHECKED STYLES */
         [type=radio]:checked + img {
-            outline: 2px solid #f00;
+            outline: 0.5px solid #f00;
         }
 
         input[type=range][orient=vertical] {
@@ -355,39 +407,40 @@
             border: none;
         }
 
-         #MNATab {
-             display: flex;
-             flex-wrap: wrap;
-             background-color: #fff;
-             color: #444;
-             width: 90%;
-             justify-content: center;
-             margin: auto;
-             border: none;
-         }
+        #MNATab {
+            display: flex;
+            flex-wrap: wrap;
+            background-color: #fff;
+            color: #444;
+            width: 90%;
+            justify-content: center;
+            margin: auto;
+            border: none;
+        }
 
-         #MNAForm {
-             display: flex;
-             flex-wrap: wrap;
-             background-color: #fff;
-             color: #444;
-             width: 90%;
-             justify-content: center;
-             margin: auto;
-             border: none;
-         }
-         #MNATab .form-group {
-             /* Add shadows to create the "card" effect */
-             width: 300px;
-             height: 150px;
-             margin: 2%;
-             box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2);
-             transition: 0.4s;
-             text-align: center;
-             border-color: black;
-             border-width: thick;
-             color: #3fa9da;
-         }
+        #MNAForm {
+            display: flex;
+            flex-wrap: wrap;
+            background-color: #fff;
+            color: #444;
+            width: 90%;
+            justify-content: center;
+            margin: auto;
+            border: none;
+        }
+
+        #MNATab .form-group {
+            /* Add shadows to create the "card" effect */
+            width: 300px;
+            height: 150px;
+            margin: 2%;
+            box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.4s;
+            text-align: center;
+            border-color: black;
+            border-width: thick;
+            color: #3fa9da;
+        }
 
         #EQ5DForm {
             display: flex;
@@ -462,7 +515,7 @@
             border: none;
         }
 
-        #EQ5DForm > .form-group {
+        #EQ5DForm > .stretched-link {
             /* Add shadows to create the "card" effect */
             width: 400px;
             height: 100px;
@@ -474,34 +527,8 @@
             border-width: thick;
         }
 
-         #MDSForm .form-group {
-             /* Add shadows to create the "card" effect */
-             width: 400px;
-             height: 100px;
-             margin: 2%;
-             box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2);
-             transition: 0.4s;
-             text-align: center;
-             border-color: black;
-             border-width: thick;
-         }
 
-         #MDSForm {
-             display: flex;
-             flex-wrap: wrap;
-             background-color: #fff;
-             color: #444;
-             width: 90%;
-             justify-content: center;
-             margin: auto;
-             border: none;
-         }
-
-
-
-
-
-         .form-group:hover {
+        .form-group:hover {
             box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
         }
 
@@ -569,13 +596,82 @@
             border: 1px solid black;
         }
 
-        #MDSForm >  .form-group:hover {
-            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
-            cursor: pointer;
+        #MDSForm {
+            display: flex;
+            flex-wrap: wrap;
+            background-color: #fff;
+            color: #444;
+            width: 90%;
+            justify-content: center;
+            margin: auto;
+            border: none;
         }
 
-    </style>
+        #MDSForm > .form-group {
+            /* Add shadows to create the "card" effect */
+            width: 400px;
+            height: 100px;
+            margin: 2%;
+            box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.2s;
+            text-align: center;
+            border-color: black;
+            border-width: thick;
+        }
 
+        #MDSForm > .form-group:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
+        }
+
+
+        .PFFSForm {
+            display: flex;
+            flex-wrap: wrap;
+            background-color: #fff;
+            color: #444;
+            width: 90%;
+            justify-content: left;
+            margin: 0 auto;
+            border: none;
+        }
+
+        #PFFSTitles {
+            display: grid;
+            align-text: center;
+            mergin: 0 auto;
+            justify-content: center;
+        }
+
+        .pffscard{
+            margin: 0% 8% 2% 0%;
+        }
+
+        #PFFSLogo{
+            float:left;
+        }
+        #PFFSInstructions{
+            margin-left: 400px;
+        }
+
+        #ReportTab h1 b{
+            font-family: "Caveat";
+
+        }
+        #ReportTab h1 {
+            text-align:center;
+        }
+
+        #pffs_scale{
+            padding-top:20px;
+        }
+
+        .pffscard img{
+            margin-right:30px;
+        }
+
+
+
+    </style>
     <meta charset="UTF-8">
     <title>Brain Health Assessment Tool</title>
 </head>
@@ -612,7 +708,40 @@
 </div>
 <div class="container">
     <!-- Tab content -->
-
+<div id="DemographicsTab" class="tabcontent">
+    <div class="rendered-form">
+        <div class="">
+            <h1 access="false" id="control-2405589">Demographic data</h1></div>
+        <div class="formbuilder-text form-group field-firstname">
+            <label for="firstname" class="formbuilder-text-label">First name</label>
+            <input type="text" class="form-control" name="firstname" access="false" maxlength="20" id="firstname">
+        </div>
+        <div class="formbuilder-text form-group field-secondname">
+            <label for="secondname" class="formbuilder-text-label">Second name</label>
+            <input type="text" class="form-control" name="secondname" access="false" maxlength="20" id="secondname">
+        </div>
+        <div class="formbuilder-text form-group field-text-1632352476692">
+            <label for="text-1632352476692" class="formbuilder-text-label">NHS number</label>
+            <input type="text" class="form-control" name="text-1632352476692" access="false" maxlength="10" id="text-1632352476692">
+        </div>
+        <div class="formbuilder-text form-group field-address1">
+            <label for="address1" class="formbuilder-text-label">Address line 1</label>
+            <input type="text" class="form-control" name="address1" access="false" id="address1">
+        </div>
+        <div class="formbuilder-text form-group field-address2">
+            <label for="address2" class="formbuilder-text-label">Address line 2</label>
+            <input type="text" class="form-control" name="address2" access="false" id="address2">
+        </div>
+        <div class="formbuilder-text form-group field-city">
+            <label for="city" class="formbuilder-text-label">City</label>
+            <input type="text" class="form-control" name="city" access="false" id="city">
+        </div>
+        <div class="formbuilder-text form-group field-postcode">
+            <label for="postcode" class="formbuilder-text-label">Postcode</label>
+            <input type="text" class="form-control" name="postcode" access="false" id="postcode">
+        </div>
+    </div>
+</div>
     <div id="IADLTab" class="tabcontent">
         <h1 class="formtitle">Amsterdam short IADL scale (adapted)</h1>
         <div class="rendered-form" id="IADLForm">
@@ -2284,301 +2413,320 @@
 
         </div>
     </div>
-    <div id="PFFSTab" class="tabcontent">
-        <img src="./assets/PFFSLogo.svg" , width="200px">
-        <img src="./assets/PFFSInstructions.svg" , width="300px">
-
-        <h1>Pictorial Fit-Frail Scale</h1>
-        <img src="./assets/Scale.svg" , width="700px">
-        <div>
-            <h2>1. Mood</h2>
-            <label>
-                <input type="radio" name="PFFSMood" value="0" checked>
-                <img src="./assets/Mood0.svg" , width="100px">
-            </label>
-
-            <label>
-                <input type="radio" name="PFFSMood" value="1">
-                <img src="./assets/Mood1.svg" , width="100px">
-            </label>
-
-            <label>
-                <input type="radio" name="PFFSMood" value="2">
-                <img src="./assets/Mood2.svg" , width="100px">
-            </label>
-
-            <label>
-                <input type="radio" name="PFFSMood" value="3">
-                <img src="./assets/Mood3.svg" , width="100px">
-            </label>
+    <div id="PFFSTab" class="tabcontent" onchange="pffsCalc()">
+        <div id="PFFSTitles">
+            <div>
+            <img id = 'PFFSLogo' src="./assets/PFFSLogo.svg" , width="200px">
+            <img id = 'PFFSInstructions' src="./assets/PFFSInstructions.svg" , width="300px">
+            </div>
+            <div>
+            <span id='pffsOutputDiv'></span>
+            <img id='pffs_scale' src="./assets/Scale.svg" , width="700px">
+            </div>
         </div>
-        <div>
-            <h2>2. Number of medications</h2>
-            <label>
-                <input type="radio" name="PFFSMeds" value="0" checked>
-                <img src="./assets/Meds0.svg" , width="100px">
-            </label>
+        <form class="PFFSForm">
+                <div class="pffscard">
+                    <h2>1. Mood</h2>
+                    <label>
+                        <input type="radio" name="PFFSMood" id='PFFSMood0' value="0" checked>
+                        <img src="./assets/Mood0.svg" , width="100px">
+                    </label>
+                    <label>
+                        <input type="radio" name="PFFSMood" id='PFFSMood1' value="1">
+                        <img src="./assets/Mood1.svg" , width="100px">
+                    </label>
 
-            <label>
-                <input type="radio" name="PFFSMeds" value="1">
-                <img src="./assets/Meds1.svg" , width="100px">
-            </label>
+                    <label>
+                        <input type="radio" name="PFFSMood" id='PFFSMood2' value="2">
+                        <img src="./assets/Mood2.svg" , width="100px">
+                    </label>
 
-            <label>
-                <input type="radio" name="PFFSMeds" value="2">
-                <img src="./assets/Meds2.svg" , width="100px">
-            </label>
+                    <label>
+                        <input type="radio" name="PFFSMood" value="3">
+                        <img src="./assets/Mood3.svg" , width="100px">
+                    </label>
+                </div>
 
-            <label>
-                <input type="radio" name="PFFSMeds" value="3">
-                <img src="./assets/Meds3.svg" , width="100px">
-            </label>
-        </div>
-        <div>
-            <h2>3. Mobility</h2>
-            <label>
-                <input type="radio" name="PFFSMobility" value="0" checked>
-                <img src="./assets/Mobility0.svg" , width="100px">
-            </label>
+                <div class="pffscard">
 
-            <label>
-                <input type="radio" name="PFFSMobility" value="1">
-                <img src="./assets/Mobility1.svg" , width="100px">
-            </label>
+                    <h2>2. Number of medications</h2>
+                    <label>
+                        <input type="radio" name="PFFSMeds" value="0" checked>
+                        <img src="./assets/Meds0.svg" , width="100px">
+                    </label>
 
-            <label>
-                <input type="radio" name="PFFSMobility" value="2">
-                <img src="./assets/Mobility2.svg" , width="100px">
-            </label>
+                    <label>
+                        <input type="radio" name="PFFSMeds" value="1">
+                        <img src="./assets/Meds1.svg" , width="100px">
+                    </label>
 
-            <label>
-                <input type="radio" name="PFFSMobility" value="3">
-                <img src="./assets/Mobility3.svg" , width="100px">
-            </label>
+                    <label>
+                        <input type="radio" name="PFFSMeds" value="2">
+                        <img src="./assets/Meds2.svg" , width="100px">
+                    </label>
 
-            <label>
-                <input type="radio" name="PFFSMobility" value="4">
-                <img src="./assets/Mobility4.svg" , width="100px">
-            </label>
+                    <label>
+                        <input type="radio" name="PFFSMeds" value="3">
+                        <img src="./assets/Meds3.svg" , width="100px">
+                    </label>
+                </div>
+                <div class="pffscard">
 
-            <label>
-                <input type="radio" name="PFFSMobility" value="5">
-                <img src="./assets/Mobility5.svg" , width="100px">
-            </label>
-        </div>
-        <div>
-            <h2>4. Function</h2>
-            <label>
-                <input type="radio" name="PFFSFunction" value="0" checked>
-                <img src="./assets/Function0.svg" , width="100px">
-            </label>
+                    <h2>3. Mobility</h2>
+                    <label>
+                        <input type="radio" name="PFFSMobility" value="0" checked>
+                        <img src="./assets/Mobility0.svg" , width="100px">
+                    </label>
 
-            <label>
-                <input type="radio" name="PFFSFunction" value="1">
-                <img src="./assets/Function1.svg" , width="100px">
-            </label>
+                    <label>
+                        <input type="radio" name="PFFSMobility" value="1">
+                        <img src="./assets/Mobility1.svg" , width="100px">
+                    </label>
 
-            <label>
-                <input type="radio" name="PFFSFunction" value="2">
-                <img src="./assets/Function2.svg" , width="100px">
-            </label>
+                    <label>
+                        <input type="radio" name="PFFSMobility" value="2">
+                        <img src="./assets/Mobility2.svg" , width="100px">
+                    </label>
 
-            <label>
-                <input type="radio" name="PFFSFunction" value="3">
-                <img src="./assets/Function3.svg" , width="100px">
-            </label>
+                    <label>
+                        <input type="radio" name="PFFSMobility" value="3">
+                        <img src="./assets/Mobility3.svg" , width="100px">
+                    </label>
 
-            <label>
-                <input type="radio" name="PFFSFunction" value="4">
-                <img src="./assets/Function4.svg" , width="100px">
-            </label>
+                    <label>
+                        <input type="radio" name="PFFSMobility" value="4">
+                        <img src="./assets/Mobility4.svg" , width="100px">
+                    </label>
 
-            <label>
-                <input type="radio" name="PFFSFunction" value="5">
-                <img src="./assets/Function5.svg" , width="100px">
-            </label>
+                    <label>
+                        <input type="radio" name="PFFSMobility" value="5">
+                        <img src="./assets/Mobility5.svg" , width="100px">
+                    </label>
+                </div>
+                <div class="pffscard">
+                    <h2>4. Function</h2>
+                    <label>
+                        <input type="radio" name="PFFSFunction" value="0" checked>
+                        <img src="./assets/Function0.svg" , width="100px">
+                    </label>
 
-        </div>
-        <div>
-            <h2>5. Balance</h2>
-            <label>
-                <input type="radio" name="PFFSBalance" value="0" checked>
-                <img src="./assets/Balance0.svg" , width="100px">
-            </label>
-            <label>
-                <input type="radio" name="PFFSBalance" value="1">
-                <img src="./assets/Balance1.svg" , width="100px">
-            </label>
-            <label>
-                <input type="radio" name="PFFSBalance" value="2">
-                <img src="./assets/Balance2.svg" , width="100px">
-            </label>
-            <label>
-                <input type="radio" name="PFFSBalance" value="3">
-                <img src="./assets/Balance3.svg" , width="100px">
-            </label>
-        </div>
-        <div>
-            <h2>6. Social connections</h2>
-            <label>
-                <input type="radio" name="PFFSSocial" value="0" checked>
-                <img src="./assets/Social0.svg" , width="100px">
-            </label>
-            <label>
-                <input type="radio" name="PFFSSocial" value="1">
-                <img src="./assets/Social1.svg" , width="100px">
-            </label>
-            <label>
-                <input type="radio" name="PFFSSocial" value="2">
-                <img src="./assets/Social2.svg" , width="100px">
-            </label>
-            <label>
-                <input type="radio" name="PFFSSocial" value="3">
-                <img src="./assets/Social3.svg" , width="100px">
-            </label>
-            <label>
-                <input type="radio" name="PFFSSocial" value="4">
-                <img src="./assets/Social4.svg" , width="100px">
-            </label>
-        </div>
-        <div>
-            <h2>7. Daytime tiredness</h2>
-            <label>
-                <input type="radio" name="PFFSTiredness" value="0" checked>
-                <img src="./assets/Tiredness0.svg" , width="100px">
-            </label>
-            <label>
-                <input type="radio" name="PFFSTiredness" value="1">
-                <img src="./assets/Tiredness1.svg" , width="100px">
-            </label>
-            <label>
-                <input type="radio" name="PFFSTiredness" value="2">
-                <img src="./assets/Tiredness2.svg" , width="100px">
-            </label>
-            <label>
-                <input type="radio" name="PFFSTiredness" value="3">
-                <img src="./assets/Tiredness3.svg" , width="100px">
-            </label>
-            <label>
-                <input type="radio" name="PFFSTiredness" value="4">
-                <img src="./assets/Tiredness4.svg" , width="100px">
-            </label>
+                    <label>
+                        <input type="radio" name="PFFSFunction" value="1">
+                        <img src="./assets/Function1.svg" , width="100px">
+                    </label>
 
-        </div>
-        <div>
-            <h2>8. Memory and thinking</h2>
-            <label>
-                <input type="radio" name="PFFSMemory" value="0" checked>
-                <img src="./assets/Memory0.svg" , width="100px">
-            </label>
-            <label>
-                <input type="radio" name="PFFSMemory" value="1">
-                <img src="./assets/Memory1.svg" , width="100px">
-            </label>
-            <label>
-                <input type="radio" name="PFFSMemory" value="2">
-                <img src="./assets/Memory2.svg" , width="100px">
-            </label>
-            <label>
-                <input type="radio" name="PFFSMemory" value="3">
-                <img src="./assets/Memory3.svg" , width="100px">
-            </label>
-            <label>
-                <input type="radio" name="PFFSMemory" value="4">
-                <img src="./assets/Memory4.svg" , width="100px">
-            </label>
-        </div>
-        <div>
-            <h2>9. Vision</h2>
-            <label>
-                <input type="radio" name="PFFSVision" value="0" checked>
-                <img src="./assets/Vision0.svg" , width="85px">
-            </label>
-            <label>
-                <input type="radio" name="PFFSVision" value="1">
-                <img src="./assets/Vision1.svg" , width="100px">
-            </label>
-            <label>
-                <input type="radio" name="PFFSVision" value="2">
-                <img src="./assets/Vision2.svg" , width="100px">
-            </label>
-        </div>
-        <div>
-            <h2>10. Hearing</h2>
-            <label>
-                <input type="radio" name="PFFSHearing" value="0" checked>
-                <img src="./assets/Hearing0.svg" , width="100px">
-            </label>
-            <label>
-                <input type="radio" name="PFFSHearing" value="1">
-                <img src="./assets/Hearing1.svg" , width="100px">
-            </label>
-            <label>
-                <input type="radio" name="PFFSHearing" value="2">
-                <img src="./assets/Hearing2.svg" , width="100px">
-            </label>
-        </div>
-        <div>
-            <h2>11. Pain</h2>
-            <label>
-                <input type="radio" name="PFFSPain" value="0" checked>
-                <img src="./assets/Pain0.svg" , width="100px">
-            </label>
-            <label>
-                <input type="radio" name="PFFSPain" value="1">
-                <img src="./assets/Pain1.svg" , width="100px">
-            </label>
-            <label>
-                <input type="radio" name="PFFSPain" value="2">
-                <img src="./assets/Pain2.svg" , width="100px">
-            </label>
-        </div>
-        <div>
-            <h2>12. Unintentional weight-loss</h2>
-            <label>
-                <input type="radio" name="PFFSWeightloss" value="0" checked>
-                <img src="./assets/Weightloss0.svg" , width="100px">
-            </label>
-            <label>
-                <input type="radio" name="PFFSWeightloss" value="1">
-                <img src="./assets/Weightloss1.svg" , width="100px">
-            </label>
-            <label>
-                <input type="radio" name="PFFSWeightloss" value="2">
-                <img src="./assets/Weightloss2.svg" , width="100px">
-            </label>
-        </div>
-        <div>
-            <h2>13. Aggression</h2>
-            <label>
-                <input type="radio" name="PFFSAggression" value="0" checked>
-                <img src="./assets/Aggression0.svg" , width="100px">
-            </label>
-            <label>
-                <input type="radio" name="PFFSAggression" value="1">
-                <img src="./assets/Aggression1.svg" , width="100px">
-            </label>
-            <label>
-                <input type="radio" name="PFFSAggression" value="2">
-                <img src="./assets/Aggression2.svg" , width="100px">
-            </label>
-        </div>
-        <div>
-            <h2>14. Bladder control</h2>
-            <label>
-                <input type="radio" name="PFFSBladder" value="0" checked>
-                <img src="./assets/Bladder0.svg" , width="100px">
-            </label>
-            <label>
-                <input type="radio" name="PFFSBladder" value="1">
-                <img src="./assets/Bladder1.svg" , width="100px">
-            </label>
-            <label>
-                <input type="radio" name="PFFSBladder" value="2">
-                <img src="./assets/Bladder2.svg" , width="100px">
-            </label>
-        </div>
+                    <label>
+                        <input type="radio" name="PFFSFunction" value="2">
+                        <img src="./assets/Function2.svg" , width="100px">
+                    </label>
 
+                    <label>
+                        <input type="radio" name="PFFSFunction" value="3">
+                        <img src="./assets/Function3.svg" , width="100px">
+                    </label>
+
+                    <label>
+                        <input type="radio" name="PFFSFunction" value="4">
+                        <img src="./assets/Function4.svg" , width="100px">
+                    </label>
+
+                    <label>
+                        <input type="radio" name="PFFSFunction" value="5">
+                        <img src="./assets/Function5.svg" , width="100px">
+                    </label>
+
+                </div>
+                <div class="pffscard">
+
+                    <h2>5. Balance</h2>
+                    <label>
+                        <input type="radio" name="PFFSBalance" value="0" checked>
+                        <img src="./assets/Balance0.svg" , width="100px">
+                    </label>
+                    <label>
+                        <input type="radio" name="PFFSBalance" value="1">
+                        <img src="./assets/Balance1.svg" , width="100px">
+                    </label>
+                    <label>
+                        <input type="radio" name="PFFSBalance" value="2">
+                        <img src="./assets/Balance2.svg" , width="100px">
+                    </label>
+                    <label>
+                        <input type="radio" name="PFFSBalance" value="3">
+                        <img src="./assets/Balance3.svg" , width="100px">
+                    </label>
+                </div>
+                <div class="pffscard">
+
+                    <h2>6. Social connections</h2>
+                    <label>
+                        <input type="radio" name="PFFSSocial" value="0" checked>
+                        <img src="./assets/Social0.svg" , width="100px">
+                    </label>
+                    <label>
+                        <input type="radio" name="PFFSSocial" value="1">
+                        <img src="./assets/Social1.svg" , width="100px">
+                    </label>
+                    <label>
+                        <input type="radio" name="PFFSSocial" value="2">
+                        <img src="./assets/Social2.svg" , width="100px">
+                    </label>
+                    <label>
+                        <input type="radio" name="PFFSSocial" value="3">
+                        <img src="./assets/Social3.svg" , width="100px">
+                    </label>
+                    <label>
+                        <input type="radio" name="PFFSSocial" value="4">
+                        <img src="./assets/Social4.svg" , width="100px">
+                    </label>
+                </div>
+                <div class="pffscard">
+                    <img id='pffs_scale' src="./assets/Scale.svg" , width="700px">
+
+                    <h2>7. Daytime tiredness</h2>
+                    <label>
+                        <input type="radio" name="PFFSTiredness" value="0" checked>
+                        <img src="./assets/Tiredness0.svg" , width="100px">
+                    </label>
+                    <label>
+                        <input type="radio" name="PFFSTiredness" value="1">
+                        <img src="./assets/Tiredness1.svg" , width="100px">
+                    </label>
+                    <label>
+                        <input type="radio" name="PFFSTiredness" value="2">
+                        <img src="./assets/Tiredness2.svg" , width="100px">
+                    </label>
+                    <label>
+                        <input type="radio" name="PFFSTiredness" value="3">
+                        <img src="./assets/Tiredness3.svg" , width="100px">
+                    </label>
+                    <label>
+                        <input type="radio" name="PFFSTiredness" value="4">
+                        <img src="./assets/Tiredness4.svg" , width="100px">
+                    </label>
+
+                </div>
+                <div class="pffscard">
+
+                    <h2>8. Memory and thinking</h2>
+                    <label>
+                        <input type="radio" name="PFFSMemory" value="0" checked>
+                        <img src="./assets/Memory0.svg" , width="100px">
+                    </label>
+                    <label>
+                        <input type="radio" name="PFFSMemory" value="1">
+                        <img src="./assets/Memory1.svg" , width="100px">
+                    </label>
+                    <label>
+                        <input type="radio" name="PFFSMemory" value="2">
+                        <img src="./assets/Memory2.svg" , width="100px">
+                    </label>
+                    <label>
+                        <input type="radio" name="PFFSMemory" value="3">
+                        <img src="./assets/Memory3.svg" , width="100px">
+                    </label>
+                    <label>
+                        <input type="radio" name="PFFSMemory" value="4">
+                        <img src="./assets/Memory4.svg" , width="100px">
+                    </label>
+                </div>
+                <div class="pffscard">
+
+                    <h2>9. Vision</h2>
+                    <label>
+                        <input type="radio" name="PFFSVision" value="0" checked>
+                        <img src="./assets/Vision0.svg" , width="85px">
+                    </label>
+                    <label>
+                        <input type="radio" name="PFFSVision" value="1">
+                        <img src="./assets/Vision1.svg" , width="100px">
+                    </label>
+                    <label>
+                        <input type="radio" name="PFFSVision" value="2">
+                        <img src="./assets/Vision2.svg" , width="100px">
+                    </label>
+                </div>
+                <div class="pffscard">
+
+                    <h2>10. Hearing</h2>
+                    <label>
+                        <input type="radio" name="PFFSHearing" value="0" checked>
+                        <img src="./assets/Hearing0.svg" , width="100px">
+                    </label>
+                    <label>
+                        <input type="radio" name="PFFSHearing" value="1">
+                        <img src="./assets/Hearing1.svg" , width="100px">
+                    </label>
+                    <label>
+                        <input type="radio" name="PFFSHearing" value="2">
+                        <img src="./assets/Hearing2.svg" , width="100px">
+                    </label>
+                </div>
+                <div class="pffscard">
+
+                    <h2>11. Pain</h2>
+                    <label>
+                        <input type="radio" name="PFFSPain" value="0" checked>
+                        <img src="./assets/Pain0.svg" , width="100px">
+                    </label>
+                    <label>
+                        <input type="radio" name="PFFSPain" value="1">
+                        <img src="./assets/Pain1.svg" , width="100px">
+                    </label>
+                    <label>
+                        <input type="radio" name="PFFSPain" value="2">
+                        <img src="./assets/Pain2.svg" , width="100px">
+                    </label>
+                </div>
+                <div class="pffscard">
+
+                    <h2>12. Unintentional weight-loss</h2>
+                    <label>
+                        <input type="radio" name="PFFSWeightloss" value="0" checked>
+                        <img src="./assets/Weightloss0.svg" , width="100px">
+                    </label>
+                    <label>
+                        <input type="radio" name="PFFSWeightloss" value="1">
+                        <img src="./assets/Weightloss1.svg" , width="100px">
+                    </label>
+                    <label>
+                        <input type="radio" name="PFFSWeightloss" value="2">
+                        <img src="./assets/Weightloss2.svg" , width="100px">
+                    </label>
+                </div>
+                <div class="pffscard">
+
+                    <h2>13. Aggression</h2>
+                    <label>
+                        <input type="radio" name="PFFSAggression" value="0" checked>
+                        <img src="./assets/Aggression0.svg" , width="100px">
+                    </label>
+                    <label>
+                        <input type="radio" name="PFFSAggression" value="1">
+                        <img src="./assets/Aggression1.svg" , width="100px">
+                    </label>
+                    <label>
+                        <input type="radio" name="PFFSAggression" value="2">
+                        <img src="./assets/Aggression2.svg" , width="100px">
+                    </label>
+                </div>
+                <div class="pffscard">
+
+                    <h2>14. Bladder control</h2>
+                    <label>
+                        <input type="radio" name="PFFSBladder" value="0" checked>
+                        <img src="./assets/Bladder0.svg" , width="100px">
+                    </label>
+                    <label>
+                        <input type="radio" name="PFFSBladder" value="1">
+                        <img src="./assets/Bladder1.svg" , width="100px">
+                    </label>
+                    <label>
+                        <input type="radio" name="PFFSBladder" value="2">
+                        <img src="./assets/Bladder2.svg" , width="100px">
+                    </label>
+                </div>
+        </form>
     </div>
     <div id="PSQITab" class="tabcontent">
         <div class="rendered-form">
@@ -2839,198 +2987,85 @@
             Evidence shows overall dietary pattern (reflected in TOTAL SCORE) as well as individual components reflect
             risk; a higher score is in response to dietary advice and support. </h6>
         <div class="rendered-form" id="MDSForm">
-            <a class="formbuilder-radio-group form-group field-MDS1 stretched-link" onclick="mdsCalc(MDS1)">
+            <a class="formbuilder-radio-group form-group field-MDS1 stretched-link" onclick="mdsCalc('MDS1')">
                 <img src="./assets/oliveoil.svg" , width="50px">
-                <label for="MDS1" class="formbuilder-radio-group-label">Is olive oil the main culinary fat
-                    used?&nbsp;</label>
-                <div class="radio-group">
-                    <div class="formbuilder-radio-inline">
-                        <input name="MDS1" access="false" id="MDS1-0" value="1" type="radio">
-                    </div>
-                    <div class="formbuilder-radio-inline">
-                        <input name="MDS1" access="false" id="MDS1-1" value="0" type="radio">
-                    </div>
-                </div>
+                <label for="MDS1" class="formbuilder-radio-group-label">Olive oil the main culinary fat
+                    used&nbsp;</label>
+
             </a>
-            <a class="formbuilder-radio-group form-group field-MDS2 stretched-link" onclick="mdsCalc(MDS2)">
+            <a class="formbuilder-radio-group form-group field-MDS2 stretched-link" onclick="mdsCalc('MDS2')">
                 <img src="./assets/spoon.svg" , width="100px">
-                <label for="MDS2" class="formbuilder-radio-group-label">Are ≥ 4 tablespoons of olive oil used each day?&nbsp;</label>
-                <div class="radio-group">
-                    <div class="formbuilder-radio-inline">
-                        <input name="MDS2" access="false" id="MDS2-0" value="1" type="radio">
+                <label for="MDS2" class="formbuilder-radio-group-label">4 or more tablespoons of olive oil are used each
+                    day&nbsp;</label>
 
-                    </div>
-                    <div class="formbuilder-radio-inline">
-                        <input name="MDS2" access="false" id="MDS2-1" value="0" type="radio">
-                    </div>
-                </div>
             </a>
-            <a class="formbuilder-radio-group form-group field-MDS3 stretched-link" onclick="mdsCalc(MDS3)">
-                <label for="MDS3" class="formbuilder-radio-group-label">Are ≥ 2 servings (of 200g each) of vegetables
-                    eaten each day?&nbsp;</label>
-                <div class="radio-group">
-                    <div class="formbuilder-radio-inline">
-                        <input name="MDS3" access="false" id="MDS3-0" value="1" type="radio">
-                    </div>
-                    <div class="formbuilder-radio-inline">
-                        <input name="MDS3" access="false" id="MDS3-1" value="0" type="radio">
-                    </div>
-                </div>
+            <a class="formbuilder-radio-group form-group field-MDS3 stretched-link" onclick="mdsCalc('MDS3')">
+                <label for="MDS3" class="formbuilder-radio-group-label">2 or more servings (of 200g each) of vegetables
+                    are eaten each day&nbsp;</label>
             </a>
-            <a class="formbuilder-radio-group form-group field-MDS4 stretched-link" onclick="mdsCalc(MDS4)">
-                <label for="MDS4" class="formbuilder-radio-group-label">Are ≥ 3 servings of fruit (of 80g each) eaten
-                    each day?&nbsp;</label>
-                <div class="radio-group">
-                    <div class="formbuilder-radio-inline">
-                        <input name="MDS4" access="false" id="MDS4-0" value="1" type="radio">
-                    </div>
-                    <div class="formbuilder-radio-inline">
-                        <input name="MDS4" access="false" id="MDS4-1" value="0" type="radio">
-                    </div>
-                </div>
+            <a class="formbuilder-radio-group form-group field-MDS4 stretched-link" onclick="mdsCalc('MDS4')">
+                <label for="MDS4" class="formbuilder-radio-group-label">3 or more servings of fruit (of 80g each) eaten
+                    are eaten each day&nbsp;</label>
+
             </a>
-            <a class="formbuilder-radio-group form-group field-MDS5 stretched-link" onclick="mdsCalc(MDS5)">
-                <label for="MDS5" class="formbuilder-radio-group-label">Is &lt; 1 serving (100-150g) of red meat/
-                    hamburgers/ other meat products eaten each day?&nbsp;</label>
-                <div class="radio-group">
-                    <div class="formbuilder-radio-inline">
-                        <input name="MDS5" access="false" id="MDS5-0" value="1" type="radio">
+            <a class="formbuilder-radio-group form-group field-MDS5 stretched-link" onclick="mdsCalc('MDS5')">
+                <label for="MDS5" class="formbuilder-radio-group-label">Less than 1 serving (100-150g) of red meat,
+                    hamburgers or other meat products are eaten each day.</label>
 
-                    </div>
-                    <div class="formbuilder-radio-inline">
-                        <input name="MDS5" access="false" id="MDS5-1" value="0" type="radio">
-
-                    </div>
-                </div>
             </a>
-            <a class="formbuilder-radio-group form-group field-MDS6 stretched-link" onclick="mdsCalc(MDS6)">
-                <label for="MDS6" class="formbuilder-radio-group-label">Is &lt; 1 serving (12g) of butter, margarine or
-                    cream eaten each day?&nbsp;</label>
-                <div class="radio-group">
-                    <div class="formbuilder-radio-inline">
-                        <input name="MDS6" access="false" id="MDS6-0" value="1" type="radio">
+            <a class="formbuilder-radio-group form-group field-MDS6 stretched-link" onclick="mdsCalc('MDS6')">
+                <label for="MDS6" class="formbuilder-radio-group-label">Less than 1 serving (12g) of butter, margarine
+                    or
+                    cream is eaten each day</label>
 
-                    </div>
-                    <div class="formbuilder-radio-inline">
-                        <input name="MDS6" access="false" id="MDS6-1" value="0" type="radio">
-
-                    </div>
-                </div>
             </a>
-            <a class="formbuilder-radio-group form-group field-MDS7 stretched-link" onclick="mdsCalc(MDS7)" >
-                <label for="MDS7" class="formbuilder-radio-group-label">Is &lt; 1 serving (330ml) of sweet or sugar
-                    sweetened carbonated beverages consumed each day?</label>
-                <div class="radio-group">
-                    <div class="formbuilder-radio-inline">
-                        <input name="MDS7" access="false" id="MDS7-0" value="1" type="radio">
+            <a class="formbuilder-radio-group form-group field-MDS7 stretched-link" onclick="mdsCalc('MDS7')">
+                <label for="MDS7" class="formbuilder-radio-group-label">Less than 1 serving (330ml) of sweet or sugar
+                    sweetened carbonated beverages is consumed each day</label>
 
-                    </div>
-                    <div class="formbuilder-radio-inline">
-                        <input name="MDS7" access="false" id="MDS7-1" value="0" type="radio">
-
-                    </div>
-                </div>
             </a>
-            <a class="formbuilder-radio-group form-group field-MDS8 stretched-link" onclick="mdsCalc(MDS8)">
-                <label for="MDS8" class="formbuilder-radio-group-label">Are ≥ 3 glasses (of 125ml) of wine consumed each
+            <a class="formbuilder-radio-group form-group field-MDS8 stretched-link" onclick="mdsCalc('MDS8')" href>
+                <label for="MDS8" class="formbuilder-radio-group-label">3 or more glasses (of 125ml) of wine are
+                    consumed each
+                    week.&nbsp;</label>
+
+            </a>
+            <a class="formbuilder-radio-group form-group field-MDS9 stretched-link" onclick="mdsCalc('MDS9')" href>
+                <label for="MDS9" class="formbuilder-radio-group-label">3 or more servings (of 150g) of legumes are
+                    consumed
+                    each week&nbsp;</label>
+
+
+            </a>
+            <a class="formbuilder-radio-group form-group field-MDS10  stretched-link" onclick="mdsCalc('MDS10')">
+                <label for="MDS10" class="formbuilder-radio-group-label">3 or more servings of fish (100-150g) or
+                    seafood
+                    (200g) are eaten each week&nbsp;</label>
+
+            </a>
+            <a class="formbuilder-radio-group form-group field-MDS11  stretched-link" onclick="mdsCalc('MDS11')">
+                <label for="MDS11" class="formbuilder-radio-group-label">Less than 3 servings of commercial
+                    sweets or pastries are eaten each week</label>
+
+            </a>
+            <a class="formbuilder-radio-group form-group field-MDS12  stretched-link" onclick="mdsCalc('MDS12')">
+                <label for="MDS12" class="formbuilder-radio-group-label">1 or more servings (of 30g) of nuts are
+                    consumed each
                     week?&nbsp;</label>
-                <div class="radio-group">
-                    <div class="formbuilder-radio-inline">
-                        <input name="MDS8" access="false" id="MDS8-0" value="1" type="radio">
 
-                    </div>
-                    <div class="formbuilder-radio-inline">
-                        <input name="MDS8" access="false" id="MDS8-1" value="0" type="radio">
-
-                    </div>
-                </div>
             </a>
-            <a class="formbuilder-radio-group form-group field-MDS9 stretched-link" onclick="mdsCalc(MDS9)">
-                <label for="MDS9" class="formbuilder-radio-group-label">Are ≥ 3 servings (of 150g) of legumes consumed
-                    each week?&nbsp;</label>
-                <div class="radio-group">
-                    <div class="formbuilder-radio-inline">
-                        <input name="MDS9" access="false" id="MDS9-0" value="1" type="radio">
+            <a class="formbuilder-radio-group form-group field-MDS13  stretched-link" onclick="mdsCalc('MDS13')">
+                <label for="MDS13" class="formbuilder-radio-group-label">Chicken, turkey or rabbit is routinely eaten
+                    instead of veal, pork, hamburger or sausage&nbsp;</label>
 
-                    </div>
-                    <div class="formbuilder-radio-inline">
-                        <input name="MDS9" access="false" id="MDS9-1" value="0" type="radio">
-
-                    </div>
-                </div>
             </a>
-            <a class="formbuilder-radio-group form-group field-MDS10  stretched-link" onclick="mdsCalc(MDS10)">
-                <label for="MDS10" class="formbuilder-radio-group-label">Are ≥ 3 servings of fish (100-150g) or seafood
-                    (200g) eaten each week?&nbsp;</label>
-                <div class="radio-group">
-                    <div class="formbuilder-radio-inline">
-                        <input name="MDS10" access="false" id="MDS10-0" value="1" type="radio">
+            <a class="formbuilder-radio-group form-group field-MDS14  stretched-link" onclick="mdsCalc('MDS14')">
+                <label for="MDS14" class="formbuilder-radio-group-label">Pasta, vegetable or rice dishes flavoured
+                    with garlic, tomato, leek or onion are eaten twice or more per week</label>
 
-                    </div>
-                    <div class="formbuilder-radio-inline">
-                        <input name="MDS10" access="false" id="MDS10-1" value="0" type="radio">
-
-                    </div>
-                </div>
-            </a>
-            <a class="formbuilder-radio-group form-group field-MDS11  stretched-link" onclick="mdsCalc(MDS11)">
-                <label for="MDS11" class="formbuilder-radio-group-label">Is &lt; 3 servings of commercial
-                    sweets/pastries eaten each week?</label>
-                <div class="radio-group">
-                    <div class="formbuilder-radio-inline">
-                        <input name="MDS11" access="false" id="MDS11-0" value="1" type="radio">
-
-                    </div>
-                    <div class="formbuilder-radio-inline">
-                        <input name="MDS11" access="false" id="MDS11-1" value="0" type="radio">
-
-                    </div>
-                </div>
-            </a>
-            <a class="formbuilder-radio-group form-group field-MDS12  stretched-link" onclick="mdsCalc(MDS12)">
-                <label for="MDS12" class="formbuilder-radio-group-label">Is ≥ 1 serving (of 30g) of nuts consumed each
-                    week?&nbsp;</label>
-                <div class="radio-group">
-                    <div class="formbuilder-radio-inline">
-                        <input name="MDS12" access="false" id="MDS12-0" value="1" type="radio">
-
-                    </div>
-                    <div class="formbuilder-radio-inline">
-                        <input name="MDS12" access="false" id="MDS12-1" value="0" type="radio">
-
-                    </div>
-                </div>
-            </a>
-            <a class="formbuilder-radio-group form-group field-MDS13  stretched-link" onclick="mdsCalc(MDS13)">
-                <label for="MDS13" class="formbuilder-radio-group-label">Is chicken, turkey or rabbit routinely eaten
-                    instead of veal, pork, hamburger or sausage?&nbsp;</label>
-                <div class="radio-group">
-                    <div class="formbuilder-radio-inline">
-                        <input name="MDS13" access="false" id="MDS13-0" value="1" type="radio">
-
-                    </div>
-                    <div class="formbuilder-radio-inline">
-                        <input name="MDS13" access="false" id="MDS13-1" value="0" type="radio">
-
-                    </div>
-                </div>
-            </a>
-            <a class="formbuilder-radio-group form-group field-MDS14  stretched-link" onclick="mdsCalc(MDS14)">
-                <label for="MDS14" class="formbuilder-radio-group-label">Are pasta, vegetable or rice dishes flavoured
-                    with garlic, tomato, leek or onion eaten ≥ twice a week?&nbsp;</label>
-                <div class="radio-group">
-                    <div class="formbuilder-radio-inline">
-                        <input name="MDS14" access="false" id="MDS14-0" value="1" type="radio">
-
-                    </div>
-                    <div class="formbuilder-radio-inline">
-                        <input name="MDS14" access="false" id="MDS14-1" value="0" type="radio">
-
-                    </div>
-                    <div id="mdsOutput"></div>
-                </div>
             </a>
         </div>
+        <div id="mdsOutput"></div>
     </div>
     <div id="TMTTab" class="tabcontent">
         <div id="TMTtitle">
@@ -3095,8 +3130,8 @@
             <button id="button-stopB">Stop</button>
             <button id="button-resetB">Reset</button>
         </div>
-        <input type='file' />
-        <br><img id="myImg" src="#" width="500px"><br>
+<!--        <input type='file'/>-->
+<!--        <br><img id="myImg" src="#" width="500px"><br>-->
         <div class="references">
             Sources:
         </div>
@@ -3117,8 +3152,23 @@
         </ul>
 
     </div>
+    <div id="ReportTab" class="tabcontent">
+        <h1><b>your</b> <i>brain</i>Health <b>report</b></h1>
+        <p>Our reference: <span id="ourref"></span></p>
+        <p>NHS Number: <span id="nhsnumletter"></span></p>
+        <p>DOB: <span id="dobletter"></span></p>
+        <p>Name: <span id="nameletter"></span></p>
+        <p>Address: <span id="adressletter"></span></p>
+        <button onclick="Export2Word('ReportTab')">Export to .docx</button>
+        <button onclick="exportHTML()">Export to .docx</button>
+
+
+
+
+    </div>
+
 </div>
-</div>
+
 <div class="fixed-footer">
     <div class="container">Copyright &copy; 2021 Dr. Ross A. Dunne</div>
 </div>
