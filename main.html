@@ -716,6 +716,7 @@
             color: #fff;
             background-color: #00AAA6;
             padding: 0 10px 0 10px;
+            margin-right: 10px;
         }
         #rbans h3{
             color: #00AAA6;
@@ -725,6 +726,37 @@
         #rbans .borderboxrbans {
             border: 1px solid #00AAA6;
             padding:5px;
+        }
+
+        #rbans table{
+            width:80%;
+        }
+        #rbans table, th, td{
+            margin: auto;
+            border: 1px solid black;
+            text-align:center;
+                        vertical-align: center;
+
+        }
+        #rbans table input[type="checkbox"]{
+            border:2px solid black;
+            width: 25px;
+            height: 25px;
+            background: #00AAAAAA;
+            vertical-align: center;
+        }
+
+        #rbans table input[type="checkbox"]:checked{
+            border:2px solid black;
+            width: 25px;
+            height: 25px;
+            vertical-align: center;
+        }
+
+        #rbans table input[type="textarea"]{
+            border: none;
+            vertical-align: center;
+            horizontal-align: center;
         }
 
     </style>
@@ -3309,84 +3341,199 @@
                     </tr>
                     <tr>
                         <td>Market</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td><input type="checkbox" id="Trial1Market" name="Trial1Market"></td>
+                        <td><input type="checkbox" id="Trial2Market" name="Trial2Market"></td>
+                        <td><input type="checkbox" id="Trial3Market" name="Trial3Market"></td>
+                        <td><input type="checkbox" id="Trial4Market" name="Trial4Market"></td>
                     </tr>
                     <tr>
                         <td>Package</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td><input type="checkbox" id="Trial1Package" name="Trial1Package"></td>
+                        <td><input type="checkbox" id="Trial2Package" name="Trial2Package"></td>
+                        <td><input type="checkbox" id="Trial3Package" name="Trial3Package"></td>
+                        <td><input type="checkbox" id="Trial4Package" name="Trial4Package"></td>
                     </tr>
                     <tr>
                         <td>Elbow</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td><input type="checkbox" id="Trial1Elbow" name="Trial1Elbow"></td>
+                        <td><input type="checkbox" id="Trial2Elbow" name="Trial2Elbow"></td>
+                        <td><input type="checkbox" id="Trial3Elbow" name="Trial3Elbow"></td>
+                        <td><input type="checkbox" id="Trial4Elbow" name="Trial4Elbow"></td>
                     </tr>
                     <tr>
                         <td>Apple</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td><input type="checkbox" id="Trial1Apple" name="Trial1Apple"></td>
+                        <td><input type="checkbox" id="Trial2Apple" name="Trial2Apple"></td>
+                        <td><input type="checkbox" id="Trial3Apple" name="Trial3Apple"></td>
+                        <td><input type="checkbox" id="Trial4Apple" name="Trial4Apple"></td>
                     </tr>
                     <tr>
                         <td>Story</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td><input type="checkbox" id="Trial1Story" name="Trial1Story"></td>
+                        <td><input type="checkbox" id="Trial2Story" name="Trial2Story"></td>
+                        <td><input type="checkbox" id="Trial3Story" name="Trial3Story"></td>
+                        <td><input type="checkbox" id="Trial4Story" name="Trial4Story"></td>
                     </tr>
                     <tr>
                         <td>Carpet</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td><input type="checkbox" id="Trial1Carpet" name="Trial1Carpet"></td>
+                        <td><input type="checkbox" id="Trial2Carpet" name="Trial2Carpet"></td>
+                        <td><input type="checkbox" id="Trial3Carpet" name="Trial3Carpet"></td>
+                        <td><input type="checkbox" id="Trial4Carpet" name="Trial4Carpet"></td>
                     </tr>
                     <tr>
                         <td>Bubble</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td><input type="checkbox" id="Trial1Bubble" name="Trial1Bubble"></td>
+                        <td><input type="checkbox" id="Trial2Bubble" name="Trial2Bubble"></td>
+                        <td><input type="checkbox" id="Trial3Bubble" name="Trial3Bubble"></td>
+                        <td><input type="checkbox" id="Trial4Bubble" name="Trial4Bubble"></td>
                     </tr>
                     <tr>
                         <td>Highway</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td><input type="checkbox" id="Trial1Highway" name="Trial1Highway"></td>
+                        <td><input type="checkbox" id="Trial2Highway" name="Trial2Highway"></td>
+                        <td><input type="checkbox" id="Trial3Highway" name="Trial3Highway"></td>
+                        <td><input type="checkbox" id="Trial4Highway" name="Trial4Highway"></td>
                     </tr>
                     <tr>
                         <td>Saddle</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td><input type="checkbox" id="Trial1Saddle" name="Trial1Saddle"></td>
+                        <td><input type="checkbox" id="Trial2Saddle" name="Trial2Saddle"></td>
+                        <td><input type="checkbox" id="Trial3Saddle" name="Trial3Saddle"></td>
+                        <td><input type="checkbox" id="Trial4Saddle" name="Trial4Saddle"></td>
                     </tr>
                     <tr>
                         <td>Powder</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Number correct</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td><input type="checkbox" id="Trial1Powder" name="Trial1Powder"></td>
+                        <td><input type="checkbox" id="Trial2Powder" name="Trial2Powder"></td>
+                        <td><input type="checkbox" id="Trial3Powder" name="Trial3Powder"></td>
+                        <td><input type="checkbox" id="Trial4Powder" name="Trial4Powder"></td>
                     </tr>
                 </table>
             </div>
-
+            <div class = "borderboxrbans">
+                <div class= 'borderboxrbans'>
+                    <h3><b>2</b>Story Memory</h3>
+                    <h4>Trial 1</h4>
+                    <p>Say:   I am going to read you a short story. I’d like you to listen carefully and, when I finish, repeat back as much
+                        of the story as you can remember. Try and use the same wording, if you can. Okay?</p>
+                    <p>Read the story below, then say Now repeat back as much of that story as you can.</p>
+                    <h4>Trial 2</h4>
+                    <p>Say I am going to read that same story again. When I finish, I want you to again repeat back as much of the
+                        story as you can remember. Try to repeat it as exactly as you can.</p>
+                    <p>Read the story below, then say Now repeat back as much of that story as you can.</p>
+                    <p>Scoring: 1 point for verbatim recall of bold, italic words or alternatives, shown below in color within parentheses. Record intrusions or variations in
+                        the Responses column.</p>
+                </div>
+                <div class="borderboxrbans">
+                    <table>
+                        <tr>
+                            <td>Story</td>
+                            <td> Trial 1 Responses</td>
+                            <td> Trial 1 Score (0 or 1)</td>
+                            <td> Trial 2 Responses</td>
+                            <td> Trial 2 Score (0 or 1)</td>
+                            <td> Item Score (0–2)</td>
+                        </tr>
+                        <tr>
+                            <td>1. On Tuesday</td>
+                            <td><input type="textarea"  id="Trial1Tuesday"  name="Trial1Tuesday"></td>
+                            <td><input type="checkbox" id="Score1Tuesday"  name="Score1Tuesday"></td>
+                            <td><input type="textarea" id="Trial2Tuesday"  name="Trial2Tuesday"></td>
+                            <td><input type="checkbox" id="Score2Tuesday"  name="Score1Tuesday"></td>
+                            <td                      id="TotScoreTuesday"name="TotScoreTuesday"></td>
+                        </tr>
+                        <tr>
+                            <td>2. May</td>
+                            <td><input type="textarea" id="Trial1May"  name="Trial1May"></td>
+                            <td><input type="checkbox" id="Score1May"  name="Score1May"></td>
+                            <td><input type="textarea" id="Trial2May"  name="Trial2May"></td>
+                            <td><input type="checkbox" id="Score2May"  name="Score1May"></td>
+                            <td                      id="TotScoreMay"name="TotScoreMay"></td>
+                        </tr>
+                        <tr>
+                            <td>3. Fourth</td>
+                            <td><input type="textarea" id="Trial1Fourth"  name="Trial1Fourth"></td>
+                            <td><input type="checkbox" id="Score1Fourth"  name="Score1Fourth"></td>
+                            <td><input type="textarea" id="Trial2Fourth"  name="Trial2Fourth"></td>
+                            <td><input type="checkbox" id="Score2Fourth"  name="Score1Fourth"></td>
+                            <td                      id="TotScoreFourth"name="TotScoreFourth"></td>
+                        </tr>
+                        <tr>
+                            <td>4. in Grasmere Cumbria</td>
+                            <td><input type="textarea" id="Trial1Grasmere"  name="Trial1Grasmere"></td>
+                            <td><input type="checkbox" id="Score1Grasmere"  name="Score1Grasmere"></td>
+                            <td><input type="textarea" id="Trial2Grasmere"  name="Trial2Grasmere"></td>
+                            <td><input type="checkbox" id="Score2Grasmere"  name="Score1Grasmere"></td>
+                            <td                      id="TotScoreGrasmere"name="TotScoreGrasmere"></td>
+                        </tr>
+                        <tr>
+                            <td>5. a serious</td>
+                            <td><input type="textarea" id="Trial1Serious"  name="Trial1Serious"></td>
+                            <td><input type="checkbox" id="Score1Serious"  name="Score1Serious"></td>
+                            <td><input type="textarea" id="Trial2Serious"  name="Trial2Serious"></td>
+                            <td><input type="checkbox" id="Score2Serious"  name="Score1Serious"></td>
+                            <td                      id="TotScoreSerious"name="TotScoreSerious"></td>
+                        </tr>
+                        <tr>
+                            <td>6. fire broke out.</td>
+                            <td><input type="textarea" id="Trial1Fire"  name="Trial1Fire"></td>
+                            <td><input type="checkbox" id="Score1Fire"  name="Score1Fire"></td>
+                            <td><input type="textarea" id="Trial2Fire"  name="Trial2Fire"></td>
+                            <td><input type="checkbox" id="Score2Fire"  name="Score1Fire"></td>
+                            <td                      id="TotScoreFire"name="TotScoreFire"></td>
+                        </tr>
+                        <tr>
+                            <td>7. Two</td>
+                            <td><input type="textarea" id="Trial1Two"  name="Trial1Two"></td>
+                            <td><input type="checkbox" id="Score1Two"  name="Score1Two"></td>
+                            <td><input type="textarea" id="Trial2Two"  name="Trial2Two"></td>
+                            <td><input type="checkbox" id="Score2Two"  name="Score1Two"></td>
+                            <td                      id="TotScoreTwo"name="TotScoreTwo"></td>
+                        </tr>
+                        <tr>
+                            <td>8. hotels</td>
+                            <td><input type="textarea" id="Trial1Hotels"  name="Trial1Hotels"></td>
+                            <td><input type="checkbox" id="Score1Hotels"  name="Score1Hotels"></td>
+                            <td><input type="textarea" id="Trial2Hotels"  name="Trial2Hotels"></td>
+                            <td><input type="checkbox" id="Score2Hotels"  name="Score1Hotels"></td>
+                            <td                      id="TotScoreHotels"name="TotScoreHotels"></td>
+                        </tr>
+                        <tr>
+                            <td>9. and a restaurant</td>
+                            <td><input type="textarea" id="Trial1Restaurant"  name="Trial1Restaurant"></td>
+                            <td><input type="checkbox" id="Score1Restaurant"  name="Score1Restaurant"></td>
+                            <td><input type="textarea" id="Trial2Restaurant"  name="Trial2Restaurant"></td>
+                            <td><input type="checkbox" id="Score2Restaurant"  name="Score1Restaurant"></td>
+                            <td                      id="TotScoreRestaurant"name="TotScoreRestaurant"></td>
+                        </tr>
+                        <tr>
+                            <td>10. were destroyed</td>
+                            <td><input type="textarea" id="Trial1Destroyed"  name="Trial1Destroyed"></td>
+                            <td><input type="checkbox" id="Score1Destroyed"  name="Score1Destroyed"></td>
+                            <td><input type="textarea" id="Trial2Destroyed"  name="Trial2Destroyed"></td>
+                            <td><input type="checkbox" id="Score2Destroyed"  name="Score1Destroyed"></td>
+                            <td                      id="TotScoreDestroyed"name="TotScoreDestroyed"></td>
+                        </tr>
+                        <tr>
+                            <td>11. before the firefighters (firemen)</td>
+                            <td><input type="textarea" id="Trial1Firemen"  name="Trial1Firemen"></td>
+                            <td><input type="checkbox" id="Score1Firemen"  name="Score1Firemen"></td>
+                            <td><input type="textarea" id="Trial2Firemen"  name="Trial2Firemen"></td>
+                            <td><input type="checkbox" id="Score2Firemen"  name="Score1Firemen"></td>
+                            <td                      id="TotScoreFiremen"name="TotScoreFiremen"></td>
+                        </tr>
+                        <tr>
+                            <td>12. were able to extinguish it (put it out).</td>
+                            <td><input type="textarea" id="Trial1Out"  name="Trial1Out"></td>
+                            <td><input type="checkbox" id="Score1Out"  name="Score1Out"></td>
+                            <td><input type="textarea" id="Trial2Out"  name="Trial2Out"></td>
+                            <td><input type="checkbox" id="Score2Out"  name="Score1Out"></td>
+                            <td                      id="TotScoreOut"name="TotScoreOut"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
 
 
 
