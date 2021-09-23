@@ -759,6 +759,10 @@
             horizontal-align: center;
         }
 
+        #rbansfigure{
+            width: 60%;
+            margin:auto;
+        }
     </style>
     <meta charset="UTF-8">
     <title>Brain Health Assessment Tool</title>
@@ -3534,13 +3538,197 @@
                     </table>
                 </div>
             </div>
-            <div class="borderboxrbans" id ='rbansfigure'>
-                <img src="./assets/rbansfigure.svg" >
-            </div>
-             <div class="borderboxrbans" id ='rbansinstructions'>
+                <div id = 'rbansfigurediv'>
+                <img id="rbansfigure" src="./assets/rbansfigure.svg" >
+                </div>
+             <div class="borderboxrbans" id="figurecopytitle">
+                 <h3><b>3</b>Figure Copy</h3>
                  </div>
-
-
+            <div class="borderboxrbans" id ='figureinstructions'>
+                 <p>Fold this page back and present the Figure Copy Drawing Page along with the stimulus. Ask the examinee to
+                 make an exact copy of the figure. Tell the examinee that he or she is being timed, but that the score is based
+                     only on the exactness of his or her copy.</p>
+                 <p>Scoring: 1 point for correctness and completeness (drawing), and 1 point for proper placement. See Appendix 1 in Stimulus Booklet A for complete
+                     scoring criteria and scoring examples.</p>
+                 </div>
+            <div class="borderboxrbans" id="figurecopytable">
+                <table>
+                    <tr>
+                        <td>Item</td>
+                        <td> Drawing (0 or 1)</td>
+                        <td> Placement (0 or 1)</td>
+                        <td> Score (0-2)</td>
+                        <td> Scoring Criteria</td>
+                    </tr>
+                    <tr>
+                        <td>1. rectangle</td>
+                        <td><input type="checkbox"   id="DrawingCopy1"   name="DrawingCopy1"></td>
+                        <td><input type="checkbox" id="PlacementCopy1" name="PlacementCopy1"></td>
+                        <td                            id="ScoreCopy1"></td>
+                        <td> Drawing: lines are unbroken and straight; angles 90 degrees; top/bottom lines 25% longer than sides; Placement: not rotated more than 15 degrees</td>
+                    </tr>
+                    <tr>
+                        <td>2. diagonal cross</td>
+                        <td><input type="checkbox"   id="DrawingCopy2"   name="DrawingCopy2"></td>
+                        <td><input type="checkbox" id="PlacementCopy2" name="PlacementCopy2"></td>
+                        <td                            id="ScoreCopy2"></td>
+                        <td> Drawing: lines are unbroken and straight and should approximately bisect each other; Placement: ends of lines should meet corners of the rectangle without significant overlap or measurable distance between the ends of the lines and the corners</td>
+                    </tr>
+                    <tr>
+                        <td>3. horizontal line</td>
+                        <td><input type="checkbox"   id="DrawingCopy3"   name="DrawingCopy3"></td>
+                        <td><input type="checkbox" id="PlacementCopy3" name="PlacementCopy3"></td>
+                        <td                            id="ScoreCopy3"></td>
+                        <td> Drawing: line is unbroken and straight; should not exceed 1/2 the length of the rectangle; Placement: should bisect left side of the rectangle at approximately a right angle and intersect the diagonal cross</td>
+                    </tr>
+                    <tr>
+                        <td>4. circle</td>
+                        <td><input type="checkbox"   id="DrawingCopy4"   name="DrawingCopy4"></td>
+                        <td><input type="checkbox" id="PlacementCopy4" name="PlacementCopy4"></td>
+                        <td                            id="ScoreCopy4"></td>
+                        <td> Drawing: round; unbroken and closed; diameter should be approximately 1/4–1/3 height of rectangle; Placement: placed in appropriate segment; not touching any other part of figure</td>
+                    </tr>
+                    <tr>
+                        <td>5. 3 small circles</td>
+                        <td><input type="checkbox"   id="DrawingCopy5"   name="DrawingCopy5"></td>
+                        <td><input type="checkbox" id="PlacementCopy5" name="PlacementCopy5"></td>
+                        <td                            id="ScoreCopy5"></td>
+                        <td> Drawing: round; unbroken and closed; equal size; triangular arrangement; not touching each other; Placement: in appropriate segment; not touching figure; triangle formed not rotated more than 15 degrees</td>
+                    </tr>
+                    <tr>
+                        <td>6. square</td>
+                        <td><input type="checkbox"   id="DrawingCopy6"   name="DrawingCopy6"></td>
+                        <td><input type="checkbox" id="PlacementCopy6" name="PlacementCopy6"></td>
+                        <td                            id="ScoreCopy6"></td>
+                        <td> Drawing: must be closed; 90 degree angles; lines straight and unbroken; height is 1/4–1/3 height of rectangle; Placement: in appropriate segment; not touching any other part of figure; not rotated more than 15 degrees</td>
+                    </tr>
+                    <tr>
+                        <td>7. curving line</td>
+                        <td><input type="checkbox"   id="DrawingCopy7"   name="DrawingCopy7"></td>
+                        <td><input type="checkbox" id="PlacementCopy7" name="PlacementCopy7"></td>
+                        <td                            id="ScoreCopy7"></td>
+                        <td> Drawing: 2 curved segments are approximately equal in length and symmetrical; correct direction of curves; Placement: ends of line touch diagonal; do not touch corner of rectangle or intersection of diagonal lines</td>
+                    </tr>
+                    <tr>
+                        <td>8. outside cross</td>
+                        <td><input type="checkbox"   id="DrawingCopy8"   name="DrawingCopy8"></td>
+                        <td><input type="checkbox" id="PlacementCopy8" name="PlacementCopy8"></td>
+                        <td                            id="ScoreCopy8"></td>
+                        <td> Drawing: vertical line of the outside cross is parallel to side of rectangle; >1/2 the height of rectangle; horizontal line crosses vertical at 90 degree angle and is between 20–50% of length of vertical line; Placement: horizontal line of outside cross touches rectangle higher than 2/3 the height of rectangle; but below top; does not penetrate the rectangle</td>
+                    </tr>
+                    <tr>
+                        <td>9. triangle</td>
+                        <td><input type="checkbox"   id="DrawingCopy9"   name="DrawingCopy9"></td>
+                        <td><input type="checkbox" id="PlacementCopy9" name="PlacementCopy9"></td>
+                        <td                            id="ScoreCopy9"></td>
+                        <td> Drawing: angle formed by 2 sides of triangle is between 60–100 degrees; sides are straight; unbroken and meet in a point; distance on vertical side of rectangle subsumed by triangle is approximately 50% of the height of vertical side; Placement: roughly centered on the left vertical side of the rectangle </td>
+                    </tr>
+                    <tr>
+                        <td>10. arrow</td>
+                        <td><input type="checkbox"   id="DrawingCopy10"   name="DrawingCopy10"></td>
+                        <td><input type="checkbox" id="PlacementCopy10" name="PlacementCopy10"></td>
+                        <td                            id="ScoreCopy10"></td>
+                        <td> Drawing: straight and unbroken; lines forming arrow are approximately equal in length and not more than 1/3 length of staff; Placement: must protrude from appropriate corner of rectangle such that staff appears to be continuation of diagonal cross</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="borderboxrbans" id="lineorientation">
+                <h3><b>4</b>Line Orientation</h3>
+            </div>
+            <div class="borderboxrbans">
+                <p>Present the sample item, and say These two lines down here (indicate) match two of the lines on top. Can you tell
+                me the numbers, or point to the lines that they match? Correct any errors and make sure the examinee understands
+                    the task. Continue with Items 1–10.</p>
+                <p>Scoring: 1 point for each line correctly identified.</p>
+            </div>
+            <div class="borderboxrbans">
+                <table>
+                    <tr>
+                        <td>Item</td>
+                        <td> ResponseA</td>
+                        <td> ResponseB</td>
+                        <td> Correct Responses</td>
+                        <td> Score (0, 1, or 2)</td>
+                    </tr>
+                    <tr>
+                        <td>Sample</td>
+                        <td><input type="textarea"   id="LineOrientationSampleA"   name="LineOrientationSampleA"></td>
+                        <td><input type="textarea"   id="LineOrientationSampleB"   name="LineOrientationSampleB"</td>
+                        <td> 1, 7</td>
+                        <td> </td>
+                    </tr>
+                    <tr>
+                        <td>1.</td>
+                        <td><input type="textarea"   id="LineOrientation1A"   name="LineOrientation1A"></td>
+                        <td><input type="textarea"   id="LineOrientation1B"   name="LineOrientation1B"</td>
+                        <td>10, 12</td>
+                        <td> </td>
+                    </tr>
+                    <tr>
+                        <td>2.</td>
+                        <td><input type="textarea"   id="LineOrientation2A"   name="LineOrientation2A"></td>
+                        <td><input type="textarea"   id="LineOrientation2B"   name="LineOrientation2B"</td>
+                        <td>4; 11</td>
+                        <td> </td>
+                    </tr>
+                    <tr>
+                        <td>3.</td>
+                        <td><input type="textarea"   id="LineOrientation3A"   name="LineOrientation3A"></td>
+                        <td><input type="textarea"   id="LineOrientation3B"   name="LineOrientation3B"</td>
+                        <td>6; 9</td>
+                        <td> </td>
+                    </tr>
+                    <tr>
+                        <td>4.</td>
+                        <td><input type="textarea"   id="LineOrientation4A"   name="LineOrientation4A"></td>
+                        <td><input type="textarea"   id="LineOrientation4B"   name="LineOrientation4B"</td>
+                        <td>8; 13</td>
+                        <td> </td>
+                    </tr>
+                    <tr>
+                        <td>5.</td>
+                        <td><input type="textarea"   id="LineOrientation5A"   name="LineOrientation5A"></td>
+                        <td><input type="textarea"   id="LineOrientation5B"   name="LineOrientation5B"</td>
+                        <td>2; 4</td>
+                        <td> </td>
+                    </tr>
+                    <tr>
+                        <td>6.</td>
+                        <td><input type="textarea"   id="LineOrientation6A"   name="LineOrientation6A"></td>
+                        <td><input type="textarea"   id="LineOrientation6B"   name="LineOrientation6B"</td>
+                        <td>1; 6</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>7.</td>
+                        <td><input type="textarea"   id="LineOrientation7A"   name="LineOrientation7A"></td>
+                        <td><input type="textarea"   id="LineOrientation7B"   name="LineOrientation7B"</td>
+                        <td>3; 10</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>8.</td>
+                        <td><input type="textarea"   id="LineOrientation8A"   name="LineOrientation8A"></td>
+                        <td><input type="textarea"   id="LineOrientation8B"   name="LineOrientation8B"</td>
+                        <td>5; 8</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>9.</td>
+                        <td><input type="textarea"   id="LineOrientation9A"   name="LineOrientation9A"></td>
+                        <td><input type="textarea"   id="LineOrientation9B"   name="LineOrientation9B"</td>
+                        <td>1; 3</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>10.</td>
+                        <td><input type="textarea"   id="LineOrientation10A"   name="LineOrientation10A"></td>
+                        <td><input type="textarea"   id="LineOrientation10B"   name="LineOrientation10B"</td>
+                        <td>11; 13</td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
 
 
 
