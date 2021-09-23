@@ -393,7 +393,7 @@
         }
 
         /* HIDE RADIO */
-        [type=radio] {
+        .PFFSForm  [type=radio] {
             position: absolute;
             opacity: 0;
             width: 0;
@@ -401,12 +401,12 @@
         }
 
         /* IMAGE STYLES */
-        [type=radio] + img {
+        .PFFSForm [type=radio] + img {
             cursor: pointer;
         }
 
         /* CHECKED STYLES */
-        [type=radio]:checked + img {
+        .PFFSForm  [type=radio]:checked + img {
             outline: 0.5px solid #f00;
         }
 
@@ -559,6 +559,7 @@
 
         #bhlogo {
             float: left;
+            margin-left:40px;
         }
 
         .apptitle {
@@ -3729,11 +3730,657 @@
                     </tr>
                 </table>
             </div>
+            <div class="borderboxrbans" id="lineorientation">
+                <h3><b>5</b>Picture Naming</h3>
+            </div>
+            <div class="borderboxrbans">
+                <p>Ask the examinee to name each picture. Give the semantic cue only if the picture is obviously misperceived.</p>
+                <p>Scoring: 1 point for each item that is correctly named spontaneously or following semantic cue.</p>
+</div>
+            <div class="borderboxrbans">
+
+            <table>
+                <tr>
+                    <td>Item</td>
+                    <td> Semantic Cue</td>
+                    <td> Responses</td>
+                    <td> Score (0 or 1)</td>
+                </tr>
+                <tr>
+                    <td>1. chair</td>
+                    <td> a piece of furniture</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>2. pencil</td>
+                    <td> used for writing</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>3. well</td>
+                    <td> you get water from it</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>4. giraffe</td>
+                    <td> an animal</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>5. sailboat</td>
+                    <td> used on the water (if “boat;” query “what kind”)</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>6. cannon</td>
+                    <td> a weapon; used in war</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>7. pliers</td>
+                    <td> a tool ("nutcracker")</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>8. trumpet</td>
+                    <td> a musical instrument (“cornet”)</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>9. peg</td>
+                    <td> used to hold washing/laundry on a line</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>10. kite</td>
+                    <td> it’s flown in the air</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+                </div>
+
+            <div class="borderboxrbans" id="semanticfluency">
+                <h3><b>6</b>Semantic Fluency</h3>
+            </div>
+            <div class="borderboxrbans">
+                <p>Say Now I’d like you to tell me the names of all of the different kinds of fruits and vegetables that
+                    you can think of. I’ll give you one minute to come up with as many as you can. Ready? </p>
+                <p>Scoring: 1 point for each correct response.</p></div>
+            <div class="borderboxrbans">
+                <table>
+                    <tr>
+                        <td>1</td>
+                        <td><input type="textarea"  id="SF1"   name="SF1"></td>
+                        <td>11</td>
+                        <td><input type="textarea" id="SF11"  name="SF11"></td>
+                        <td>21</td>
+                        <td><input type="textarea" id="SF21"  name="SF21"></td>
+                        <td>31</td>
+                        <td><input type="textarea" id="SF31"  name="SF31"></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><input type="textarea"  id="SF2"   name="SF2"></td>
+                        <td>12</td>
+                        <td><input type="textarea" id="SF12"  name="SF12"></td>
+                        <td>22</td>
+                        <td><input type="textarea" id="SF22"  name="SF22"></td>
+                        <td>32</td>
+                        <td><input type="textarea" id="SF32"  name="SF32"></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><input type="textarea"  id="SF3"   name="SF3"></td>
+                        <td>13</td>
+                        <td><input type="textarea" id="SF13"  name="SF13"></td>
+                        <td>23</td>
+                        <td><input type="textarea" id="SF23"  name="SF23"></td>
+                        <td>33</td>
+                        <td><input type="textarea" id="SF33"  name="SF33"></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><input type="textarea"  id="SF4"   name="SF4"></td>
+                        <td>14</td>                      
+                        <td><input type="textarea" id="SF14"  name="SF14"></td>
+                        <td>24</td>
+                        <td><input type="textarea" id="SF24"  name="SF24"></td>
+                        <td>34</td>
+                        <td><input type="textarea" id="SF34"  name="SF34"></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td><input type="textarea"  id="SF5"   name="SF5"></td>
+                        <td>15</td>
+                        <td><input type="textarea" id="SF15"  name="SF15"></td>
+                        <td>25</td>
+                        <td><input type="textarea" id="SF25"  name="SF25"></td>
+                        <td>35</td>
+                        <td><input type="textarea" id="SF35"  name="SF35"></td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td><input type="textarea"  id="SF6"   name="SF6"></td>
+                        <td>16</td>
+                        <td><input type="textarea" id="SF16"  name="SF16"></td>
+                        <td>26</td>
+                        <td><input type="textarea" id="SF26"  name="SF26"></td>
+                        <td>36</td>
+                        <td><input type="textarea" id="SF36"  name="SF36"></td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td><input type="textarea"  id="SF7"   name="SF7"></td>
+                        <td>17</td>
+                        <td><input type="textarea" id="SF17"  name="SF17"></td>
+                        <td>27</td>
+                        <td><input type="textarea" id="SF27"  name="SF27"></td>
+                        <td>37</td>
+                        <td><input type="textarea" id="SF37"  name="SF37"></td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td><input type="textarea"  id="SF8"   name="SF8"></td>
+                        <td>18</td>
+                        <td><input type="textarea" id="SF18"  name="SF18"></td>
+                        <td>28</td>
+                        <td><input type="textarea" id="SF28"  name="SF28"></td>
+                        <td>38</td>
+                        <td><input type="textarea" id="SF38"  name="SF38"></td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td><input type="textarea"  id="SF9"   name="SF9"></td>
+                        <td>19</td>
+                        <td><input type="textarea" id="SF19"  name="SF19"></td>
+                        <td>29</td>
+                        <td><input type="textarea" id="SF29"  name="SF29"></td>
+                        <td>39</td>
+                        <td><input type="textarea" id="SF39"  name="SF39"></td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td><input type="textarea"  id="SF10"   name="SF10"></td>
+                        <td>20</td>
+                        <td><input type="textarea" id="SF20"  name="SF20"></td>
+                        <td>30</td>
+                        <td><input type="textarea" id="SF30"  name="SF30"></td>
+                        <td>40</td>
+                        <td><input type="textarea" id="S40"  name="SF40"></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="borderboxrbans" id="digitspan">
+                <h3><b>7</b>Digit Span</h3>
+            </div>
+            <div class="borderboxrbans">
+                <p>Say: <ob>I am going to say some numbers, and I want you to repeat them after me. Okay?</ob></p>
+                <p>Read the numbers at the rate of 1 per second. Only read the second string in each set if the first string was failed.
+                    Discontinue after failure of both strings in any set.</p>
+                <p>Scoring: 2 points for the first string correct, 1 point for the second string correct, and 0 points for both strings failed.</p>
+            <div class="borderboxrbans">
+                <table>
+                    <tr>
+                        <td>Item</td>
+                        <td> First String</td>
+                        <td> String Score (0 or 2)</td>
+                        <td> Second String</td>
+                        <td> String Score (0 or 1)</td>
+                        <td> Item Score (0–2)</td>
+                    </tr>
+                    <tr>
+                        <td>1.</td>
+                        <td> 4—9</td>
+                        <td></td>
+                        <td> 5—3</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>2.</td>
+                        <td> 8—3—5</td>
+                        <td></td>
+                        <td> 2—4—1</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>3.</td>
+                        <td> 7—2—4—6</td>
+                        <td></td>
+                        <td> 1—6—3—8</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>4.</td>
+                        <td> 5—3—9—2—4</td>
+                        <td></td>
+                        <td> 3—8—4—9—1</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>5.</td>
+                        <td> 6—4—2—9—3—5</td>
+                        <td></td>
+                        <td> 9—1—5—3—7—6</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>6.</td>
+                        <td> 2—8—5—1—9—3—7</td>
+                        <td></td>
+                        <td> 5—3—1—7—4—9—2</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>7.</td>
+                        <td> 8—3—7—9—5—2—4—1</td>
+                        <td></td>
+                        <td> 9—5—1—4—2—7—3—8</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>8.</td>
+                        <td> 1—5—9—2—3—8—7—4—6</td>
+                        <td></td>
+                        <td> 5—1—9—7—6—2—3—6—5</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                </div>
+                <div class="borderboxrbans" id="coding">
+                    <h3><b>8</b>Coding</h3>
+                </div>
+                <div class="borderboxrbans">
+                    <p>Say: Look at these boxes (indicate key). For each one of these marks there is a number that goes with it. Down
+                        here there are marks, but no numbers. I want you to fill in the number that goes with each mark.</p>
+                    <p> Demonstrate the first three. Say: Now I would like you to fill in the rest of these boxes up to the double lines indicate) for practice.
+                        Correct any errors as they are made. Make sure that the examinee understands the task and has correctly completed the sample items before you begin timing.</p>
+                    <p> Say Now I would like you to continue to fill in the numbers that match the marks. Go as quickly as you can
+                        without skipping any. When you reach the end of the line, go on to the next one. Ready? Go ahead.</p>
+                    <p>Redirect the examinee to the task if he or she becomes distracted. If the examinee is unable to comprehend the
+                        task, the subtest score is 0.</p>
+                    <p>Scoring: 1 point for each item correctly coded within 90 seconds (do not score the sample items).</p>
+                    Note: Familiarize yourself with these instructions before administering this subtest.
+                    </div>
+                <div class="borderboxrbans" id="listrecall">
+                    <h3><b>9</b>List Recall</h3>
+                </div>
+                <div class="borderboxrbans">
+                <p>Say:  Do you remember the list of words that I read to you in the beginning? Tell me as many of those words as
+                    you can remember now.</p><p> Scoring: 1 point for each word correctly recalled.
+                </p>
+                    </div>
+                <div class="borderboxrbans">
+
+                    <table>
+                            <tr>
+                                <td>List (do not read)</td>
+                                <td>Response</td>
+                                <td>Score(0 or 1)</td>
+                            </tr>
+                            <tr>
+                                <td>Market</td>
+                                <td><input type="textarea" id="RecallMarket" name="RecallMarket"></td>
+                                <td><input type="checkbox" id="RecallMarketScore" name="RecallMarketScore"></td>
+
+                            </tr>
+                            <tr>
+                                <td>Package</td>
+                                <td><input type="textarea" id="RecallPackage" name="RecallPackage"></td>
+                                <td><input type="checkbox" id="RecallPackageScore" name="RecallPackageScore"></td>
+
+                            </tr>
+                            <tr>
+                                <td>Elbow</td>
+                                <td><input type="textarea" id="RecallElbow" name="RecallElbow"></td>
+                                <td><input type="checkbox" id="RecallElbowScore" name="RecallElbowScore"></td>
+
+                            </tr>
+                            <tr>
+                                <td>Apple</td>
+                                <td><input type="textarea" id="RecallApple" name="RecallApple"></td>
+                                <td><input type="checkbox" id="RecallAppleScore" name="RecallAppleScore"></td>
+
+                            </tr>
+                            <tr>
+                                <td>Story</td>
+                                <td><input type="textarea" id="RecallStory" name="RecallStory"></td>
+                                <td><input type="checkbox" id="RecallStoryScore" name="RecallStoryScore"></td>
+
+                            </tr>
+                            <tr>
+                                <td>Carpet</td>
+                                <td><input type="textarea" id="RecallCarpet" name="RecallCarpet"></td>
+                                <td><input type="checkbox" id="RecallCarpetScore" name="RecallCarpetScore"></td>
+
+                            </tr>
+                            <tr>
+                                <td>Bubble</td>
+                                <td><input type="textarea" id="RecallBubble" name="RecallBubble"></td>
+                                <td><input type="checkbox" id="RecallBubbleScore" name="RecallBubbleScore"></td>
+
+                            </tr>
+                            <tr>
+                                <td>Highway</td>
+                                <td><input type="textarea" id="RecallHighway" name="RecallHighway"></td>
+                                <td><input type="checkbox" id="RecallHighwayScore" name="RecallHighwayScore"></td>
+
+                            </tr>
+                            <tr>
+                                <td>Saddle</td>
+                                <td><input type="textarea" id="RecallSaddle" name="RecallSaddle"></td>
+                                <td><input type="checkbox" id="RecallSaddleScore" name="RecallSaddleScore"></td>
+
+                            </tr>
+                            <tr>
+                                <td>Powder</td>
+                                <td><input type="textarea" id="RecallPowder" name="RecallPowder"></td>
+                                <td><input type="checkbox" id="RecallPowderScore" name="RecallPowderScore"></td>
+
+                            </tr>
+                        </table>
+                        </div>
+                <div class="borderboxrbans" id="listrecog">
+                    <h3><b>10</b>List Recognition</h3>
+                </div>
+                <div class="borderboxrbans" >Say I’m going to read you some words. Some of these words were on that list, and some of them weren’t. I want
+                    you to tell me which words were on the list. For each word, ask Was _______________ on the list?
+                    Scoring: 1 point for each word correctly identified. Circle the letter corresponding to examinee’s response (y = yes, n = no); bold, capitalized (Y, N)
+                    letter indicates correct response.</div>
+                <div class="borderboxrbans">
+                    <table>
+                        <tr>
+                            <td>List</td>
+                            <td> Yes / No</td>
+                            <td>List</td>
+                            <td> Yes / No</td>
+                            <td>List</td>
+                            <td> Yes / No</td>
+                            <td>List</td>
+                            <td> Yes / No</td>
+                        </tr>
+                        <tr>
+                            <td>1. Apple</td>
+                            <td><input type="radio"   id="ListRecogApple"   name="ListRecogApple" value="1">
+                                <input type="radio"   id="ListRecogApple"   name="ListRecogApple" value="0"></td>
+                            <td>6. sailor</td>
+                            <td><input type="radio"   id="ListRecogSailor"   name="ListRecogSailor" value="0">
+                                <input type="radio"   id="ListRecogSailor"   name="ListRecogSailor" value="1"></td>
+                            <td>11. Bubble</td>
+                            <td><input type="radio"   id="ListRecogBubble"   name="ListRecogBubble" value="1">
+                                <input type="radio"   id="ListRecogBubble"   name="ListRecogBubble" value="0"></td>
+                            <td>16. Saddle</td>
+                            <td><input type="radio"   id="ListRecogSaddle"   name="ListRecogSaddle" value="1">
+                                <input type="radio"   id="ListRecogSaddle"   name="ListRecogSaddle" value="0"></td>
+
+                        </tr>
+
+                        <tr>
+                            <td>2. honey</td>
+                            <td><input type="radio"   id="ListRecogHoney"   name="ListRecogHoney" value="0">
+                                <input type="radio"   id="ListRecogHoney"   name="ListRecogHoney" value="1"></td>
+                            <td>7. velvet</td>
+                            <td><input type="radio"   id="ListRecogVelvet"   name="ListRecogVelvet" value="0">
+                                <input type="radio"   id="ListRecogVelvet"   name="ListRecogVelvet" value="1"></td>
+                            <td>12. prairie</td>
+                            <td><input type="radio"   id="ListRecogPrairie"   name="ListRecogPrairie" value="0">
+                                <input type="radio"   id="ListRecogPrairie"   name="ListRecogPrairie" value="1"></td>
+                            <td>17. Powder</td>
+                            <td><input type="radio"   id="ListRecogPowder"   name="ListRecogPowder" value="1">
+                                <input type="radio"   id="ListRecogPowder"   name="ListRecogPowder" value="0"></td>
+
+                        </tr>
+
+                        <tr>
+                            <td>3. Market</td>
+                            <td><input type="radio"   id="ListRecogMarket"   name="ListRecogMarket" value="1">
+                                <input type="radio"   id="ListRecogMarket"   name="ListRecogMarket" value="0"></td>
+                            <td>8. Carpet</td>
+                            <td><input type="radio"   id="ListRecogCarpet"   name="ListRecogCarpet" value="1">
+                                <input type="radio"   id="ListRecogCarpet"   name="ListRecogCarpet" value="0"></td>
+                            <td>13. Highway</td>
+                            <td><input type="radio"   id="ListRecogHighway"   name="ListRecogHighway" value="1">
+                                <input type="radio"   id="ListRecogHighway"   name="ListRecogHighway" value="0"></td>
+                            <td>18. angel</td>
+                            <td><input type="radio"   id="ListRecogAngel"   name="ListRecogAngel" value="0">
+                                <input type="radio"   id="ListRecogAngel"   name="ListRecogAngel" value="1"></td>
+
+                        </tr>
+
+                        <tr>
+                            <td>4. Story</td>
+                            <td><input type="radio"   id="ListRecogStory"   name="ListRecogStory" value="1">
+                                <input type="radio"   id="ListRecogStory"   name="ListRecogStory" value="0"></td>
+                            <td>9. valley</td>
+                            <td><input type="radio"   id="ListRecogValley"   name="ListRecogValley" value="0">
+                                <input type="radio"   id="ListRecogValley"   name="ListRecogValley" value="1"></td>
+                            <td>14. oyster</td>
+                            <td><input type="radio"   id="ListRecogOyster"   name="ListRecogOyster" value="0">
+                                <input type="radio"   id="ListRecogOyster"   name="ListRecogOyster" value="1"></td>
+                            <td>19. Package</td>
+                            <td><input type="radio"   id="ListRecogPackage"   name="ListRecogPackage" value="1">
+                                <input type="radio"   id="ListRecogPackage"   name="ListRecogPackage" value="0"></td>
+
+                        </tr>
+
+                        <tr>
+                            <td>5. fabric</td>
+                            <td><input type="radio"   id="ListRecogFabric"   name="ListRecogFabric" value="0">
+                                <input type="radio"   id="ListRecogFabric"   name="ListRecogFabric" value="1"></td>
+                            <td>10. Elbow</td>
+                            <td><input type="radio"   id="ListRecogElbow"   name="ListRecogElbow" value="1">
+                                <input type="radio"   id="ListRecogElbow"   name="ListRecogElbow" value="0"></td>
+                            <td>15. student</td>
+                            <td><input type="radio"   id="ListRecogStudent"   name="ListRecogStudent" value="0">
+                                <input type="radio"   id="ListRecogStudent"   name="ListRecogStudent" value="1"></td>
+                            <td>20. meadow</td>
+                            <td><input type="radio"   id="ListRecogMeadow"   name="ListRecogMeadow" value="0">
+                                <input type="radio"   id="ListRecogMeadow"   name="ListRecogMeadow" value="1"></td>
+
+                        </tr>
+                    </table>
+                </div>
+                <div class="borderboxrbans" id="storyrecall">
+                    <h3><b>11</b>Story Recall</h3>
+                </div>
+                <div class="borderboxrbans" >Say Do you remember that story about a fire that I read to you earlier? Tell me as many details from the
+                    story as you can remember now.
+                    Scoring: 1 point for each verbatim recall.</div>
+                <div class="borderboxrbans">
+                    <table>
+                        <tr>
+                            <td>Story (Do not read)</td>
+                            <td> Responses</td>
+                            <td> Item Score (0 or 1)</td>
+                        </tr>
+                        <tr>
+                            <td>1. On Tuesday</td>
+                            <td><input type="textarea"  id="RecallTuesday"  name="RecallTuesday"></td>
+                            <td><input type="checkbox" id="ScoreRecallTuesday"  name="ScoreRecallTuesday"></td>
+                        </tr>
+                        <tr>
+                            <td>2. May</td>
+                            <td><input type="textarea" id="RecallMay"  name="RecallMay"></td>
+                            <td><input type="checkbox" id="ScoreRecallMay"  name="ScoreRecallMay"></td>
+
+                        </tr>
+                        <tr>
+                            <td>3. Fourth</td>
+                            <td><input type="textarea" id="RecallFourth"  name="RecallFourth"></td>
+                            <td><input type="checkbox" id="ScoreRecallFourth"  name="ScoreRecallFourth"></td>
+
+                        </tr>
+                        <tr>
+                            <td>4. in Grasmere Cumbria</td>
+                            <td><input type="textarea" id="RecallGrasmere"  name="RecallGrasmere"></td>
+                            <td><input type="checkbox" id="ScoreRecallGrasmere"  name="ScoreRecallGrasmere"></td>
+
+                        </tr>
+                        <tr>
+                            <td>5. a serious</td>
+                            <td><input type="textarea" id="RecallSerious"  name="RecallSerious"></td>
+                            <td><input type="checkbox" id="ScoreRecallSerious"  name="ScoreRecallSerious"></td>
+
+                        </tr>
+                        <tr>
+                            <td>6. fire broke out.</td>
+                            <td><input type="textarea" id="RecallFire"  name="RecallFire"></td>
+                            <td><input type="checkbox" id="ScoreRecallFire"  name="ScoreRecallFire"></td>
+
+                        </tr>
+                        <tr>
+                            <td>7. Two</td>
+                            <td><input type="textarea" id="RecallTwo"  name="RecallTwo"></td>
+                            <td><input type="checkbox" id="ScoreRecallTwo"  name="ScoreRecallTwo"></td>
+
+                        </tr>
+                        <tr>
+                            <td>8. hotels</td>
+                            <td><input type="textarea" id="RecallHotels"  name="RecallHotels"></td>
+                            <td><input type="checkbox" id="ScoreRecallHotels"  name="ScoreRecallHotels"></td>
+
+                        </tr>
+                        <tr>
+                            <td>9. and a restaurant</td>
+                            <td><input type="textarea" id="RecallRestaurant"  name="RecallRestaurant"></td>
+                            <td><input type="checkbox" id="ScoreRecallRestaurant"  name="ScoreRecallRestaurant"></td>
+
+                        </tr>
+                        <tr>
+                            <td>10. were destroyed</td>
+                            <td><input type="textarea" id="RecallDestroyed"  name="RecallDestroyed"></td>
+                            <td><input type="checkbox" id="ScoreRecallDestroyed"  name="ScoreRecallDestroyed"></td>
+
+                        </tr>
+                        <tr>
+                            <td>11. before the firefighters (firemen)</td>
+                            <td><input type="textarea" id="RecallFiremen"  name="RecallFiremen"></td>
+                            <td><input type="checkbox" id="ScoreRecallFiremen"  name="ScoreRecallFiremen"></td>
+
+                        </tr>
+                        <tr>
+                            <td>12. were able to extinguish it (put it out).</td>
+                            <td><input type="textarea" id="RecallOut"  name="RecallOut"></td>
+                            <td><input type="checkbox" id="ScoreRecallOut"  name="ScoreRecallOut"></td>
+
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="borderboxrbans" id="figurerecalltitle">
+                    <h3><b>12</b>Figure Recall</h3>
+                </div>
+                <div class="borderboxrbans" id ='figurerecallinstructions'>
+                    <p>Say Do you remember that figure that I had you copy? I want you to draw as much of it as you can remember now.
+                        If you remember a part, but you’re not sure where it goes, put it anywhere. Try to draw as much of it as you can.
+                        Now, present the Figure Recall Drawing Page.
+                        Scoring: 1 point for correctness and completeness (drawing), and 1 point for proper placement. See Appendix 1 in Stimulus Booklet A for complete
+                        scoring criteria and scoring examples.</p>
+                    <p>Scoring: 1 point for correctness and completeness (drawing), and 1 point for proper placement. See Appendix 1 in Stimulus Booklet A for complete
+                        scoring criteria and scoring examples.</p>
+                </div>
+                <div class="borderboxrbans" id="figurerecalltable">
 
 
+                <table>
+                    <tr>
+                        <td>Item</td>
+                        <td> Drawing (0 or 1)</td>
+                        <td> Placement (0 or 1)</td>
+                        <td> Score (0-2)</td>
+                        <td> Scoring Criteria</td>
+                    </tr>
+                    <tr>
+                        <td>1. rectangle</td>
+                        <td><input type="checkbox"   id="DrawingRecall1"   name="DrawingRecall1"></td>
+                        <td><input type="checkbox" id="PlacementRecall1" name="PlacementRecall1"></td>
+                        <td                            id="ScoreRecall1"></td>
+                        <td> Drawing: lines are unbroken and straight; angles 90 degrees; top/bottom lines 25% longer than sides; Placement: not rotated more than 15 degrees</td>
+                    </tr>
+                    <tr>
+                        <td>2. diagonal cross</td>
+                        <td><input type="checkbox"   id="DrawingRecall2"   name="DrawingRecall2"></td>
+                        <td><input type="checkbox" id="PlacementRecall2" name="PlacementRecall2"></td>
+                        <td                            id="ScoreRecall2"></td>
+                        <td> Drawing: lines are unbroken and straight and should approximately bisect each other; Placement: ends of lines should meet corners of the rectangle without significant overlap or measurable distance between the ends of the lines and the corners</td>
+                    </tr>
+                    <tr>
+                        <td>3. horizontal line</td>
+                        <td><input type="checkbox"   id="DrawingRecall3"   name="DrawingRecall3"></td>
+                        <td><input type="checkbox" id="PlacementRecall3" name="PlacementRecall3"></td>
+                        <td                            id="ScoreRecall3"></td>
+                        <td> Drawing: line is unbroken and straight; should not exceed 1/2 the length of the rectangle; Placement: should bisect left side of the rectangle at approximately a right angle and intersect the diagonal cross</td>
+                    </tr>
+                    <tr>
+                        <td>4. circle</td>
+                        <td><input type="checkbox"   id="DrawingRecall4"   name="DrawingRecall4"></td>
+                        <td><input type="checkbox" id="PlacementRecall4" name="PlacementRecall4"></td>
+                        <td                            id="ScoreRecall4"></td>
+                        <td> Drawing: round; unbroken and closed; diameter should be approximately 1/4–1/3 height of rectangle; Placement: placed in appropriate segment; not touching any other part of figure</td>
+                    </tr>
+                    <tr>
+                        <td>5. 3 small circles</td>
+                        <td><input type="checkbox"   id="DrawingRecall5"   name="DrawingRecall5"></td>
+                        <td><input type="checkbox" id="PlacementRecall5" name="PlacementRecall5"></td>
+                        <td                            id="ScoreRecall5"></td>
+                        <td> Drawing: round; unbroken and closed; equal size; triangular arrangement; not touching each other; Placement: in appropriate segment; not touching figure; triangle formed not rotated more than 15 degrees</td>
+                    </tr>
+                    <tr>
+                        <td>6. square</td>
+                        <td><input type="checkbox"   id="DrawingRecall6"   name="DrawingRecall6"></td>
+                        <td><input type="checkbox" id="PlacementRecall6" name="PlacementRecall6"></td>
+                        <td                            id="ScoreRecall6"></td>
+                        <td> Drawing: must be closed; 90 degree angles; lines straight and unbroken; height is 1/4–1/3 height of rectangle; Placement: in appropriate segment; not touching any other part of figure; not rotated more than 15 degrees</td>
+                    </tr>
+                    <tr>
+                        <td>7. curving line</td>
+                        <td><input type="checkbox"   id="DrawingRecall7"   name="DrawingRecall7"></td>
+                        <td><input type="checkbox" id="PlacementRecall7" name="PlacementRecall7"></td>
+                        <td                            id="ScoreRecall7"></td>
+                        <td> Drawing: 2 curved segments are approximately equal in length and symmetrical; correct direction of curves; Placement: ends of line touch diagonal; do not touch corner of rectangle or intersection of diagonal lines</td>
+                    </tr>
+                    <tr>
+                        <td>8. outside cross</td>
+                        <td><input type="checkbox"   id="DrawingRecall8"   name="DrawingRecall8"></td>
+                        <td><input type="checkbox" id="PlacementRecall8" name="PlacementRecall8"></td>
+                        <td                            id="ScoreRecall8"></td>
+                        <td> Drawing: vertical line of the outside cross is parallel to side of rectangle; >1/2 the height of rectangle; horizontal line crosses vertical at 90 degree angle and is between 20–50% of length of vertical line; Placement: horizontal line of outside cross touches rectangle higher than 2/3 the height of rectangle; but below top; does not penetrate the rectangle</td>
+                    </tr>
+                    <tr>
+                        <td>9. triangle</td>
+                        <td><input type="checkbox"   id="DrawingRecall9"   name="DrawingRecall9"></td>
+                        <td><input type="checkbox" id="PlacementRecall9" name="PlacementRecall9"></td>
+                        <td                            id="ScoreRecall9"></td>
+                        <td> Drawing: angle formed by 2 sides of triangle is between 60–100 degrees; sides are straight; unbroken and meet in a point; distance on vertical side of rectangle subsumed by triangle is approximately 50% of the height of vertical side; Placement: roughly centered on the left vertical side of the rectangle </td>
+                    </tr>
+                    <tr>
+                        <td>10. arrow</td>
+                        <td><input type="checkbox"   id="DrawingRecall10"   name="DrawingRecall10"></td>
+                        <td><input type="checkbox" id="PlacementRecall10" name="PlacementRecall10"></td>
+                        <td                            id="ScoreRecall10"></td>
+                        <td> Drawing: straight and unbroken; lines forming arrow are approximately equal in length and not more than 1/3 length of staff; Placement: must protrude from appropriate corner of rectangle such that staff appears to be continuation of diagonal cross</td>
+                    </tr>
+                </table>
+                    </div>
 
-
-
+    </div>
         </div>
 
 
