@@ -3,6 +3,7 @@
 <head>
     <!-- Required meta tags -->
     <style>        @import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
     </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -66,9 +67,9 @@
             let CASPTotal = casp_p_sum + casp_sr_sum + casp_a_sum + casp_c_sum;
             let casp_background = 'The CASP-19 scale is used to measure quality of life in older people. ' +
                 'Higher scores suggest higher quality of life and the scale is broken into multiple areas or "sub-domains".'
-            document.getElementById('CASP19OutputDiv').innerHTML = '<h3>Results:</h3><p>' + casp_background + ' You scored ' + casp_c_sum +
+            document.getElementById('CASP19OutputDiv').innerHTML =  casp_background + ' You scored ' + casp_c_sum +
                 ' on the "Control" subdomain, ' + casp_a_sum + ' on the "Autonomy" subdomain, ' + casp_sr_sum + ' on the "Self-Realisation"' +
-                ' sub-domain, and ' + casp_p_sum + ' on the "Pleasure" subdomain, with an overall score of ' + CASPTotal + '</p>';
+                ' sub-domain, and ' + casp_p_sum + ' on the "Pleasure" subdomain, with an overall score of ' + CASPTotal;
         }
 
         function showhiderefs(refsdiv) {
@@ -92,8 +93,12 @@
             let eq5dslider = parseInt(document.getElementById("eq5dslider").value);
             console.log(eq5dslider);
             document.getElementById("sliderOutput").innerHTML = '<h2>' + eq5dslider + '</h2>';
-            document.getElementById('EQ5DOutputDiv').innerHTML = '<br><br><h3>Results:</h3><p> You scored ' +
-                eq5d_sum + ' on the EQ5D and estimated yourself as ' + eq5dslider + ' on the visual analogue scale. </p>';
+            document.getElementById('EQ5DOutputDiv').innerHTML = ' The EQ5D is often used for health economic analysis, but is ' +
+                'a useful short measure of health-related quality of life. You scored ' +
+                eq5d_sum + ' on the EQ5D and estimated yourself as ' + eq5dslider +
+                ' on the visual analogue scale where 100 represents the best health imaginable, and 0 the worst.';
+            results = [eq5dsum, eq5dslider];
+            return results;
         }
 
         window.onload = function () {
@@ -276,22 +281,6 @@
 
             document.body.removeChild(downloadLink);
         }
-        function exportHTML(){
-            var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' "+
-                "xmlns:w='urn:schemas-microsoft-com:office:word' "+
-                "xmlns='http://www.w3.org/TR/REC-html40'>"+
-                "<head><meta charset='utf-8'><title>Export HTML to Word Document with JavaScript</title></head><body>";
-            var footer = "</body></html>";
-            var sourceHTML = header+document.getElementById("source-html").innerHTML+footer;
-
-            var source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
-            var fileDownload = document.createElement("a");
-            document.body.appendChild(fileDownload);
-            fileDownload.href = source;
-            fileDownload.download = 'document.doc';
-            fileDownload.click();
-            document.body.removeChild(fileDownload);
-        }
         function isValidNhsNumber(txtNhsNumber) {
 
             var isValid = false;
@@ -315,6 +304,42 @@
             }
 
             return isValid;
+        }
+
+        function sumIADL(){
+            let iadl_nodes = document.querySelectorAll('select[id^="IADLS"]')
+            let iterate_values = iadl_nodes.values();
+            let iadl_array = [];
+            for (i=0; i<iadl_nodes.length; i++){
+                iadl_array.push(parseInt(iadl_nodes[i].value))
+            }
+            let iadl_sum = iadl_array.reduce(add, 0);
+            console.log(iadl_sum)
+            document.getElementById('IADLSResult').innerHTML = iadl_sum;
+            return iadl_array;
+        }
+        function writeIADLSLetter(){
+            let iadl_array = sumIADL();
+            let iadl_sum = iadl_array.reduce(add, 0);
+            let parC = " Brain Health is a new approach to the assessment of people with milder forms of cognitive impairment. We aim to optimise cognitive performance by addressing sensory impairment, pain,  medication effects, and identify people who are more or less likely to have worsening of their cognitive impairment in the short term. Finally, we aim to reduce people's risk of worsening cognition using techniques for behaviour change as well as group and individual education. We encourage everyone to participate in one of our many currently running research studies of promising new therapies."
+            let letter_text = 'You were recently referred to the memory assessment services. Because you scored ' + iadl_sum +
+                ' on the Amsterdam Instrumental Activities of Daily Living (IADL) scale, we invited you to <i>brain</i>Health Manchester.' + parC
+            document.getElementById('iadltext').innerHTML = letter_text;
+        }
+        function writeDiscussion(){
+            let discussion_content = document.getElementById('discussion').value;
+            document.getElementById('discussiontext').innerHTML = discussion_content;
+        }
+
+        function writeQuality(){
+            let eq = document.getElementById('EQ5DOutputDiv').innerHTML;
+            let casp = document.getElementById('CASP19OutputDiv').innerHTML;
+            document.getElementById('qualityoflifetext').innerHTML = eq + " " + casp;
+        }
+        function write_letter(){
+            writeIADLSLetter();
+            writeDiscussion();
+            writeQuality();
         }
 
     </script>
@@ -669,7 +694,38 @@
             margin-right:30px;
         }
 
+        #demoform{
+            display: flex;
+            flex-wrap: wrap;
+        }
 
+        #basicdemographics{
+            width: 30%;
+            margin-right:10px;
+        }
+
+        #basicdemographics .form-group{
+            padding: 10px;
+        }
+#rbans{
+    font-family: "PT Sans";
+    margin: 0 auto;
+
+}
+        #rbans b{
+            color: #fff;
+            background-color: #00AAA6;
+            padding: 0 10px 0 10px;
+        }
+        #rbans h3{
+            color: #00AAA6;
+            background-color:  #fff;
+        }
+
+        #rbans .borderboxrbans {
+            border: 1px solid #00AAA6;
+            padding:5px;
+        }
 
     </style>
     <meta charset="UTF-8">
@@ -708,10 +764,11 @@
 </div>
 <div class="container">
     <!-- Tab content -->
-<div id="DemographicsTab" class="tabcontent">
-    <div class="rendered-form">
-        <div class="">
-            <h1 access="false" id="control-2405589">Demographic data</h1></div>
+<div id="DemographicsTab" class="tabcontent" >
+    <div class="rendered-form" id = "demoform" autocomplete="off">
+        <div id="basicdemographics">
+        <div class="formtitle">
+            <h1 access="false" >Demographic data</h1></div>
         <div class="formbuilder-text form-group field-firstname">
             <label for="firstname" class="formbuilder-text-label">First name</label>
             <input type="text" class="form-control" name="firstname" access="false" maxlength="20" id="firstname">
@@ -720,9 +777,13 @@
             <label for="secondname" class="formbuilder-text-label">Second name</label>
             <input type="text" class="form-control" name="secondname" access="false" maxlength="20" id="secondname">
         </div>
-        <div class="formbuilder-text form-group field-text-1632352476692">
-            <label for="text-1632352476692" class="formbuilder-text-label">NHS number</label>
-            <input type="text" class="form-control" name="text-1632352476692" access="false" maxlength="10" id="text-1632352476692">
+        <div class="formbuilder-text form-group field-NHSnumber">
+            <label for="NHSNumber" class="formbuilder-text-label">NHS number</label>
+            <input type="text" class="form-control" name="NHSNumber" access="false" maxlength="10" id="NHSNumber">
+        </div>
+        <div class="formbuilder-text form-group field-dateofbirth">
+            <label for="dateofbirth" class="formbuilder-text-label">Date of birth</label>
+            <input type="date" class="form-control" name="dateofbirth" access="false" id="dateofbirth">
         </div>
         <div class="formbuilder-text form-group field-address1">
             <label for="address1" class="formbuilder-text-label">Address line 1</label>
@@ -740,11 +801,27 @@
             <label for="postcode" class="formbuilder-text-label">Postcode</label>
             <input type="text" class="form-control" name="postcode" access="false" id="postcode">
         </div>
+        <div class="formbuilder-text form-group field-dateassessed">
+            <label for="dateassessed" class="formbuilder-text-label">Date of assessment</label>
+            <input type="date" class="form-control" name="dateassessed" access="false" id="dateassessed">
+        </div>
+        <div class="formbuilder-text form-group field-age">
+            <label for="age" class="formbuilder-text-label">Age (yrs)</label>
+            <input type="text" class="form-control" name="age" access="false" id="age">
+        </div>
+        </div>
+        <div id="moredemographics">
+            <a href="https://cascotweb.warwick.ac.uk/#/classification/soc2020">CASCOT coder 2020</a>
+
+
+
+        </div>
     </div>
 </div>
     <div id="IADLTab" class="tabcontent">
         <h1 class="formtitle">Amsterdam short IADL scale (adapted)</h1>
-        <div class="rendered-form" id="IADLForm">
+        <h4 class="formtitle"> The sum of the selected items is: <span id = 'IADLSResult'></span> </h4>
+        <div class="rendered-form" id="IADLForm" onchange="sumIADL()">
             <div class="select form-group field-IADLS1">
                 <label for="IADLS1" class="select-label">Did they carry out household chores?</label>
                 <select class="form-control" name="IADLS1" id="IADLS1">
@@ -1205,7 +1282,7 @@
 
             <output name="sliderOutput" id="sliderOutput"></output>
         </div>
-        <div id="EQ5DOutputDiv"></div>
+        <br><br><h3>Results:</h3><p><span id="EQ5DOutputDiv"></span></p>
     </div>
     <div id="CASP19Tab" class="tabcontent">
         <div class="formtitle">
@@ -1395,7 +1472,7 @@
                 </select>
             </div>
         </div>
-        <div id="CASP19OutputDiv"></div>
+        <h3>Results:</h3><p><span id="CASP19OutputDiv"></span></p>
         <button class="references" onclick="showhiderefs('CASP19ReferenceDiv')"><h1>Show/hide references:</h1></button>
         <br>
         <div id="CASP19ReferenceDiv">
@@ -3153,14 +3230,197 @@
 
     </div>
     <div id="ReportTab" class="tabcontent">
+        <div id="ReportContent">
         <h1><b>your</b> <i>brain</i>Health <b>report</b></h1>
         <p>Our reference: <span id="ourref"></span></p>
         <p>NHS Number: <span id="nhsnumletter"></span></p>
         <p>DOB: <span id="dobletter"></span></p>
         <p>Name: <span id="nameletter"></span></p>
         <p>Address: <span id="adressletter"></span></p>
-        <button onclick="Export2Word('ReportTab')">Export to .docx</button>
-        <button onclick="exportHTML()">Export to .docx</button>
+        <p id="introtext"></p>
+        <p id="iadltext"></p>
+        <h5>Presenting complaint</h5>
+        <p id="presentingcomplainttext"></p>
+        <h5>Medical history</h5>
+        <p id="medicalhistorytext"></p>
+        <h5>Medications</h5>
+        <p id="medicationstext"></p>
+        <h5>Quality of life</h5>
+        <p id="qualityoflifetext"></p>
+        <h5>Immediate memory</h5>
+        <p id="immediatememorytext"></p>
+        <h5>Speech and language</h5>
+        <p id="speechandlanguagetext"></p>
+        <h5>Vision and visospatial function</h5>
+        <p id="visuospatial_constructiontext"></p>
+        <h5>Attention and concentration</h5>
+        <p id="attentiontext"></p>
+        <h5>Delayed memory </h5>
+        <p id="delayedmemorytext"></p>
+        <h5>Overall cognition</h5>
+        <p id="overallcognitiontext"></p>
+        <h5>Depression and apathy </h5>
+        <p id="depressionapathytext"></p>
+        <h5>Anxiety </h5>
+        <p id="anxietytext"></p>
+        <h5>Sleep </h5>
+        <p id="sleeptext"></p>
+        <h5>Alcohol </h5>
+        <p id="alcoholtext"></p>
+        <h5>Diet and exercise</h5>
+        <p id="dietexercisetext"></p>
+        <h5>Cardiovascular risks </h5>
+        <p id="cardiovasculartext"></p>
+        <h5>Movement, frailty and bone health</h5>
+        <p id="movementfrailtytext"></p>
+        <h5>Neuropsychiatric symptoms </h5>
+        <p id="neuropsychiatrictext"></p>
+        <h5>Discussion</h5>
+        <p id="discussiontext"></p>
+        </div>
+        <textarea name="discussion" id="discussion" rows="10" cols=150"></textarea><br>
+        <button onclick="write_letter()">Report</button>
+        <button onclick="Export2Word('ReportContent')">Export to .docx</button>
+    </div>
+    <div id="RBANSTab" class="tabcontent">
+        <div id="rbans">
+            <div class = "borderboxrbans">
+                <div class= 'borderboxrbans'>
+                <h3><b>1</b>List Learning</h3>
+                    </div>
+                <h4>Trial 1</h4>
+                <p>Say:  I am going to read you a list of words. I want you to listen carefully and, when I finish, repeat back as
+                many words as you can. You don’t have to say them in the same order that I do—just repeat back as
+                    many words as you can remember, in any order. Okay?</p>
+                <h4>Trials 2–4</h4>
+                <p>Say:   I am going to read the list again. When I finish, repeat back as many words as you can, even if you have
+                already said them before. Okay?</p>
+                <p>Record responses in order.</p>
+                <p>Scoring: 1 point for each word correctly recalled on each trial.</p>
+            </div>
+            <div class="borderboxrbans">
+                <table>
+                    <tr>
+                        <td>List</td>
+                        <td>Trial 1</td>
+                        <td> Trial 2</td>
+                        <td> Trial3</td>
+                        <td> Trial 4</td>
+                    </tr>
+                    <tr>
+                        <td>Market</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Package</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Elbow</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Apple</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Story</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Carpet</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Bubble</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Highway</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Saddle</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Powder</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Number correct</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
