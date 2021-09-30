@@ -1,0 +1,535 @@
+<style>
+#seconds, #tens {
+    font-size: 2em;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+}
+
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: thin;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+/* HIDE RADIO */
+.PFFSForm  [type=radio] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* IMAGE STYLES */
+.PFFSForm [type=radio] + img {
+    cursor: pointer;
+}
+
+/* CHECKED STYLES */
+.PFFSForm  [type=radio]:checked + img {
+    outline: 3px solid #f00;
+}
+
+input[type=range][orient=vertical] {
+    writing-mode: bt-lr; /* IE */
+    -webkit-appearance: slider-vertical; /* WebKit */
+    width: 2px;
+    height: 875px;
+    margin-top: 70px;
+    background-color: black;
+    background-image: url("./assets/eq5dscale.png");
+
+}
+
+#CASP19 {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fff;
+    color: #444;
+    width: 90%;
+    justify-content: center;
+    margin: auto;
+    border: none;
+}
+
+#MNATab {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fff;
+    color: #444;
+    width: 90%;
+    justify-content: center;
+    margin: auto;
+    border: none;
+}
+
+#MNAForm {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fff;
+    color: #444;
+    width: 90%;
+    justify-content: center;
+    margin: auto;
+    border: none;
+}
+
+#MNATab .form-group {
+    /* Add shadows to create the "card" effect */
+    width: 300px;
+    height: 150px;
+    margin: 2%;
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.4s;
+    text-align: center;
+    border-color: black;
+    border-width: thick;
+    color: #3fa9da;
+}
+
+#EQ5DForm {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fff;
+    color: #444;
+    width: 90%;
+    justify-content: center;
+    margin: auto;
+    border: none;
+}
+
+#EQ5DLogo {
+    width: 20%
+}
+
+
+.formbuilder-radio-group-label {
+    font-weight: bold;
+}
+
+.formtitle {
+    text-align: center;
+    position: center;
+}
+
+#CASP19Tab .form-group {
+    /* Add shadows to create the "card" effect */
+    width: 300px;
+    height: 100px;
+    margin: 2%;
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.4s;
+    text-align: center;
+    border-color: black;
+    border-width: thick;
+    color: #3fa9da;
+}
+
+#IADLTab .form-group {
+    /* Add shadows to create the "card" effect */
+    width: 300px;
+    height: 100px;
+    margin: 2%;
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.4s;
+    text-align: center;
+    border-color: black;
+    border-width: thick;
+}
+
+#IADLTab .field-IADLComments {
+    /* Add shadows to create the "card" effect */
+    width: 70%;
+    height: 60%;
+    margin: 2%;
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.4s;
+    text-align: center;
+    border-color: black;
+    border-width: thick;
+}
+
+#IADLForm {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fff;
+    color: #444;
+    width: 90%;
+    justify-content: center;
+    margin: auto;
+    border: none;
+}
+
+#EQ5DForm > .stretched-link {
+    /* Add shadows to create the "card" effect */
+    width: 400px;
+    height: 100px;
+    margin: 2%;
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.4s;
+    text-align: center;
+    border-color: black;
+    border-width: thick;
+}
+
+
+.form-group:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
+}
+
+#bhlogo {
+    float: left;
+    margin-left:40px;
+}
+
+.apptitle {
+    text-align: center;
+    font-size: 250%;
+}
+
+#banner {
+    position: fixed;
+    margin: 0 auto;
+    width: 100%;
+    background: #333;
+    padding: 10px 0;
+    color: #fff;
+}
+
+#banner {
+    top: 0;
+    clear: both;
+}
+
+.tab {
+    clear: both;
+    padding-top: 180px;
+}
+
+.container {
+    width: 90%;
+    border: none;
+}
+
+.references {
+    position: center;
+    background-color: #e7e7e7;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 2px 2px;
+    cursor: pointer;
+}
+
+#EQ5DScaleImage {
+    float: left;
+}
+
+#TMTtitle {
+    border: 3px solid black;
+    text-align: center;
+    font-size: 150%;
+    font-weight: bold;
+    padding: 30px 10px 30px 10px;
+}
+
+#TMTTab > table {
+    width: 100%;
+    border: 1px solid black;
+}
+
+#MDSForm {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fff;
+    color: #444;
+    width: 90%;
+    justify-content: center;
+    margin: auto;
+    border: none;
+}
+
+#MDSForm > .form-group {
+    /* Add shadows to create the "card" effect */
+    width: 400px;
+    height: 100px;
+    margin: 2%;
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.2s;
+    text-align: center;
+    border-color: black;
+    border-width: thick;
+}
+
+#MDSForm > .form-group:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
+}
+
+
+.PFFSForm {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fff;
+    color: #444;
+    width: 90%;
+    justify-content: left;
+    margin: 0 auto;
+    border: none;
+}
+
+#PFFSTitles {
+    display: grid;
+    align-text: center;
+    mergin: 0 auto;
+    justify-content: center;
+}
+
+.pffscard{
+    margin: 0% 8% 2% 0%;
+}
+
+#PFFSLogo{
+    float:left;
+}
+#PFFSInstructions{
+    margin-left: 400px;
+}
+
+#ReportTab h1 b{
+    font-family: "Caveat";
+
+}
+#ReportTab h1 {
+    text-align:center;
+}
+
+#pffs_scale{
+    padding-top:20px;
+}
+
+.pffscard img{
+    margin-right:30px;
+}
+
+#demoform{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#basicdemographics{
+    width: 30%;
+    margin-right:10px;
+}
+
+#basicdemographics .form-group{
+    padding: 10px;
+}
+#rbans{
+    font-family: "PT Sans";
+    margin: 0 auto;
+
+}
+#rbans b{
+    color: #fff;
+    background-color: #00AAA6;
+    padding: 0 10px 0 10px;
+    margin-right: 10px;
+}
+#rbans h3{
+    color: #00AAA6;
+    background-color:  #fff;
+}
+
+#rbans .borderboxrbans {
+    border: 1px solid #00AAA6;
+    padding:5px;
+}
+
+#rbans table{
+    width:80%;
+}
+#rbans table, th, td{
+    margin: auto;
+    border: 1px solid black;
+    text-align:center;
+    vertical-align: center;
+
+}
+#rbans table input[type="checkbox"]{
+    border:2px solid black;
+    width: 25px;
+    height: 25px;
+    background: #00AAAAAA;
+    vertical-align: center;
+}
+
+#rbans table input[type="checkbox"]:checked{
+    border:2px solid black;
+    width: 25px;
+    height: 25px;
+    vertical-align: center;
+}
+
+#rbans table input[type="textarea"]{
+    border: none;
+    vertical-align: center;
+    horizontal-align: center;
+}
+
+#rbansfigure{
+    width: 60%;
+    margin:auto;
+}
+
+#GAD7Form{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fff;
+    color: #444;
+    width: 90%;
+    justify-content: left;
+    margin: 0 auto;
+    border: none;
+
+}
+
+#GAD7Form .form-group {
+    /* Add shadows to create the "card" effect */
+    width: 300px;
+    height: 150px;
+    margin: 2%;
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.4s;
+    text-align: center;
+    border-color: black;
+    border-width: thick;
+}
+
+#GAD7Form > .form-group:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
+}
+
+#GDSForm{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fff;
+    color: #444;
+    width: 90%;
+    justify-content: left;
+    margin: 0 auto;
+    border: none;
+
+}
+
+#GDSForm .form-group {
+    /* Add shadows to create the "card" effect */
+    width: 300px;
+    height: 150px;
+    margin: 2%;
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.4s;
+    text-align: center;
+    border-color: black;
+    border-width: thick;
+}
+
+#GDSForm > .form-group:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
+}
+
+#GDSTab h1{
+    text-align: center;
+}
+
+#GDSForm [type=radio]{
+    text-align: center;
+    vertical-align: bottom:
+}
+
+#PSQIForm{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fff;
+    color: #444;
+    width: 90%;
+    justify-content: left;
+    margin: 0 auto;
+    border: none;
+}
+
+
+#PSQIForm .form-group {
+    /* Add shadows to create the "card" effect */
+    width: 300px;
+    height: 100px;
+    margin: 2%;
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.4s;
+    text-align: center;
+    border-color: black;
+    border-width: thick;
+}
+
+#PSQIForm > .form-group:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
+}
+
+#PSQITab h1{
+    text-align: center;
+}
+
+#PSQIForm  [type=select]{
+    text-align: center;
+    vertical-align: bottom:
+}
+
+#PSQIForm .form-group [type=textarea]{
+    text-align: center;
+    vertical-align: bottom:
+    height:100px;
+}
+
+#PSQIForm #instructions{
+    text-align: center;
+    float:left;
+}
+
+
+</style>
