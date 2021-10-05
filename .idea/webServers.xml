@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="a8af7bbd-100b-4d8b-bf25-212eed7af05d" name="ftp.d1507582-117651.blacknighthosting.com" url="http://ftp.d1507582-117651.blacknighthosting.com">
+        <fileTransfer host="ftp.d1507582-117651.blacknighthosting.com" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
